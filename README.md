@@ -1,5 +1,5 @@
-#léeme
-#Tablas
+# léeme
+# Tablas
 **Curso**
 id, nombre, duración, matriculados
 aab, Calculo, 2 meses, 30 alumnos
