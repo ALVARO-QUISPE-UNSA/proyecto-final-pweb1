@@ -19,7 +19,6 @@ id, nombre, apellido, email, contraseña
 id relación, id alumno, id curso, id profesor
 #Html
 - index.html: Es la página de acceso.
--
 #cgi-bin
 - cursos.pl: mostrar la información de cursos
 - teachers.pl: mostrar infor de teacher
