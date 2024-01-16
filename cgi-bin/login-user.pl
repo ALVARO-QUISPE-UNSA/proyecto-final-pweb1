@@ -2,7 +2,6 @@
 use strict;
 use warnings;
 use CGI;
-
 my $q = CGI->new;
 my $dni = $q->param("dni");
 my $password = $q->param("password");
