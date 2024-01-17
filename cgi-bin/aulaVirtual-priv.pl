@@ -41,12 +41,13 @@ $sth->fetch;
 #encabezado
 print $q->header(-type => 'text/html', -charset => 'UTF-8');
 #El for va a recorrer los cambos, en esta caso, dni, nombre...
+print "<table><tr>\n";
 foreach my $key (@{$sth->{NAME}}) {
   print "<td>$row{$key}</td>\n";
 }
+print "</table></tr>\n";
 my $nombre = $row{"nombre"};
-print "$nombre\n";
-#print "El dni es: $row{"dni"} y su nombre $row{"nombre"}\n";
+#print "$nombre\n";
 $sth->finish;
 $dbh->disconnect;
 #print<<OJOSAZULES;
