@@ -16,6 +16,9 @@
   display: flex;
   width: 100vw;
   height: 100vh;
+  background: rgb(33,50,149);
+background: linear-gradient(138deg, rgba(33,50,149,1) 0%, rgba(68,147,242,1) 70%, rgba(32,193,219,1) 100%);
+
 }
 /*Estilos de las secciones*/
 section {
@@ -30,11 +33,12 @@ section {
 .slider {
   display:flex;
   overflow: hidden;
-  width: 80%;
+  width: 85%;
   height: 80%;
   border-radius: 15px;
   position: relative;
   align-self: self-end;
+  box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
 }
 .slider img {
   width: 100%;
@@ -66,12 +70,14 @@ section {
   box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
 }
 .form-guide {
+  color: white;
   font-family: 'Kanit', sans-serif;
 }
 /*Estilos del form y etiquetas internas*/
 .login {
   display: flex;
   flex-direction: column;
+  color: white;
 }
 .input-label {
   font-family: 'Kanit', sans-serif;
@@ -86,7 +92,7 @@ section {
 .input-data:hover, .input-data:focus {
   outline-style: solid;
   outline-width: 3px;
-  outline-color: var(--jacksons-purple);
+  outline-color: var(--denim);
   border: none;
 }
 .text-button {
