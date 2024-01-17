@@ -30,8 +30,11 @@ section {
 .slider {
   display:flex;
   overflow: hidden;
-  height: 100%;
+  width: 80%;
+  height: 80%;
+  border-radius: 15px;
   position: relative;
+  align-self: self-end;
 }
 .slider img {
   width: 100%;
@@ -50,7 +53,6 @@ section {
 /*Estilos de segunda sección*/
 .sec-section {
   height: 100%;
-  background-color:var(--jacksons-purple);
   gap: 30px;
 }
 /*contenedor del contenido mostrado en la segunda sección*/
