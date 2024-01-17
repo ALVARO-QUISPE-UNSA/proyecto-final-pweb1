@@ -15,16 +15,30 @@ sub conectionDB () {
   return $dbh;
 }
 #Obtienes el manejador y haces una consulta
+#Ejemplo
+#      my $dbh = conectionDB();
+#      my $sth = $dbh->prepare("SELECT * FROM alumno");
+#      $sth->execute();
+#      print $q->header(-type => 'text/html', -charset => 'UTF-8');
+#      while (my @row = $sth -> fetchrow_array) {
+#        print "@row\n";
+#      }
+#      $sth->finish;
+#      $dbh->disconnect;
+#-------------------------------
+#Motrarar información según datos del alumnado
+my $dni = $q->param("dni");
 my $dbh = conectionDB();
-my $sth = $dbh->prepare("SELECT * FROM alumno");
-$sth->execute();
-print $q->header(-type => 'text/html', -charset => 'UTF-8');
-while (my @row = $sth -> fetchrow_array) {
-  print "@row\n";
-}
-$sth->finish;
-$dbh->disconnect;
-
+my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
+$sth->execute($dni);
+print "Se imprime dni:\n";
+print "$dni\n\n";
+      print $q->header(-type => 'text/html', -charset => 'UTF-8');
+      while (my @row = $sth -> fetchrow_array) {
+        print "@row\n";
+      }
+      $sth->finish;
+      $dbh->disconnect;
 #print<<OJOSAZULES;
 #Estoy loguwadoooodkoajvbehvbhfbv
 #OJOSAZULES
