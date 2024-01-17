@@ -1,49 +1,103 @@
+/*Normalize*/
 * {
   margin: 0;
   box-sizing: border-box;
 }
+:root {
+  --cinnabar: #e53030;
+  --cerulean: #0493cf;
+  --golden-fizz: #f9e63e;
+  --jacksons-purple: #213295;
+  --denim: #114ecb;
+  --oracle: #3e6f7c;
+}
+/*Envoltura de la página*/
 .wrapper {
-  background-color: aliceblue;
-  display: grid;
-  grid-template-columns: repeat(
-  auto-fill,
-  minmax(600px, 1fr)
-  );
+  display: flex;
   width: 100vw;
   height: 100vh;
 }
-.slider {
-  display: flex;
-  overflow: hidden;
-  height: 100%;
-}
-.slider img {
-  width: 100%;
-  object-fit: cover;
-  flex: 1;
-}
+/*Estilos de las secciones*/
 section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
-section > img:first-child {
-  width: 50%;
+/*1ra sección: imágenes*/
+/*Estilos del slider*/
+.slider {
+  display:flex;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
 }
-section:last-child {
-  background-color:coral;
+.slider img {
+  width: 100%;
+  object-fit: cover;
 }
-article {
+.slider > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-color: black;
+  opacity: .3;
+}
+/*2da sección: login*/
+/*Estilos de segunda sección*/
+.sec-section {
+  height: 100%;
+  background-color:var(--jacksons-purple);
+  gap: 30px;
+}
+/*contenedor del contenido mostrado en la segunda sección*/
+.sec-section article {
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  background-color:darkturquoise;
-  gap: 15px;
-  padding: 40px;
+  background-color:var(--cinnabar);
+  gap: 10px;
+  padding: 30px;
+  box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
 }
-form {
+.form-guide {
+  font-family: 'Kanit', sans-serif;
+}
+/*Estilos del form y etiquetas internas*/
+.login {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+}
+.input-label {
+  font-family: 'Kanit', sans-serif;
+  font-size: 18px;
+}
+.input-data {
+  border-radius: 50em;
+  border: none;
+  font-size: 18px;
+  padding: 3px 10px;
+}
+.input-data:hover, .input-data:focus {
+  outline-style: solid;
+  outline-width: 3px;
+  outline-color: var(--jacksons-purple);
+  border: none;
+}
+.text-button {
+  width: min-content;
+  margin-top: 20px;
+  align-self: center;
+  border-radius: 50em;
+  font-family: 'Kanit', sans-serif;
+  font-weight: bold;
+  border: none;
+  background-color: var(--golden-fizz);
+  padding: 3px 9px; 
+}
+.text-button:hover {
+  background-color: #e8ee00;
 }
