@@ -1,0 +1,18 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+/*Envoltura de la página*/
+.wrapper {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(33,50,149);
+  background: linear-gradient(138deg, rgba(33,50,149,1) 0%, rgba(68,147,242,1) 70%, rgba(32,193,219,1) 100%);
+}
+#redirect {
+  display: none;
+}
+#redirect input {
+  display: none;
+}

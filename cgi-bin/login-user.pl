@@ -1,10 +1,7 @@
 #!/usr/bin/perl
-# Esta direccion es para usar el modulo CGI::Session 
-# use lib '/home/alumno/perl5/lib/perl5';
 use strict;
 use warnings;
 use CGI;
-# use CGI::Session;
 use DBI;
 binmode(STDOUT, ":utf8");
 binmode(STDIN, ":utf8");
@@ -16,14 +13,40 @@ utf8::decode($password);
 
 # Validamos las cadenas y despues los credenciales del usuario
 if($dni =~ /^\d{8}$/ && $password =~ /^.{8,}$/ && userValidate($dni, $password)) {
-  # my $session = CGI::Session->new($q);
-  # $session->param('userDni', $dni);
-  # $session->header($q);
-  # En el primer CGI
-  print $q->redirect(-uri => 'aulaVirtual-priv.pl', -method => 'POST', -query => "dni=$dni");
+  print $q->header('text/html');
+
+  print <<HTML
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/redirect.css">
+    <title>Inicia sesión - Grupo Piensa</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <h1>Redirigiendo</h1>
+    </div>
+    <form id="redirect" action="aulaVirtual-priv.pl" method="POST">
+      <input type="hidden" name="dni" value="$dni">
+      <input type="hidden" name="passw" value="$password">
+    </form>
+    <script>
+      setTimeout(function(){
+        document.getElementById("redirect").submit();
+}, 2000);
+    </script>
+  </body>
+HTML
 } else {
   print $q->redirect('../login.html');
 }
+
+
+#Subrutina que comprueba el usuario y la contraseña
 
 sub userValidate {
   my $dni = $_[0];
