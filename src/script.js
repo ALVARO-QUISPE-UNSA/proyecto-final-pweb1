@@ -12,11 +12,11 @@ function showSlides() {
     slideIndex = 1;
   }
   for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" acti    ve", "");
+    dots[i].className = dots[i].className.replace(" active", "");
   }
   slides[slideIndex - 1].style.display = "block";
   dots[slideIndex - 1].className += " active";
-  setTimeout(showSlides, 1700); // Cambiar la imagen cada 2 segundos
+  setTimeout(showSlides, 4000); // Cambiar la imagen cada 2 segundos
 }
 
 window.onload = function () {
