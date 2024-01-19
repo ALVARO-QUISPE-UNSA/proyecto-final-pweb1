@@ -27,9 +27,13 @@ sub conectionDB () {
 #      $dbh->disconnect;
 #-------------------------------
 #Motrarar información según datos del alumnado
+sub getDiccionario() {
+
+}
 my $dni = $q->param("dni");
 my $dbh = conectionDB();
-my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
+my $pregunta = "SELECT * FROM alumno WHERE dni = ?";
+my $sth = $dbh->prepare($pregunta);
 $sth->execute($dni);
 #hasta el momento ejecuté la consulta
 #creo este diccionario que contenga los datos de la fila
