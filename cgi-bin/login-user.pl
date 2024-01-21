@@ -68,8 +68,8 @@ sub dates {
 
 # Funcion que hace la conexion a la base de datos
 sub connectDB {
-  my $user = "pweb1";
+  my $user = "alumno";
   my $pass = "pweb1";
-  my $dsn = "DBI:MariaDB:database=pweb1;host=192.168.0.102";
+  my $dsn = "DBI:MariaDB:database=pweb1;host=localhost";
   return my $dbh = DBI->connect($dsn, $user, $pass) or die ("\e[1;31m No se pudo conectar!\n[0m]");
 }
