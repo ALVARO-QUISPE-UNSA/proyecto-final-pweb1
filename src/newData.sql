@@ -80,7 +80,7 @@ VALUES
 (56789012, 3);  -- Alumno5, Física 1
 -- Insertar datos
 INSERT INTO materiales_por_temas (id_tema, id_material) VALUES 
-(1, 1)
-(2, 2)
-(3, 3)
+(1, 1),
+(2, 2),
+(3, 3),
 (4, 4);

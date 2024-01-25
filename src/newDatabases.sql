@@ -63,7 +63,7 @@ CREATE TABLE turnos (
 CREATE TABLE turnos_alumno (
   dni_alumno INT,
   id_turno INT,
-  FOREIGN KEY (dni_alumno) REFERENCES alumnos(dni),
+  FOREIGN KEY (dni_alumno) REFERENCES alumno(dni),
   FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
 );
 -- Crear tabla de materiales_por_temas
