@@ -34,4 +34,9 @@ id relación, id alumno, id curso, id profesor
 - cursos.pl: mostrar la información de cursos
 - teachers.pl: mostrar infor de teacher
 
-
+# 1ra parte de la exposición
+- Victor: archivo js
+- Jorge: login.html
+- Gustavo: login.html
+- Alvaro: academia y bases de dato
+- 
