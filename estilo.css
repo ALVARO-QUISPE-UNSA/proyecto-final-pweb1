@@ -1,0 +1,62 @@
+/*Normalize*/
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --cinnabar: #e53030;
+    --cerulean: #0493cf;
+    --golden-fizz: #f9e63e;
+    --jacksons-purple: #213295;
+    --denim: #114ecb;
+    --oracle: #3e6f7c;
+}
+.wrapper {
+    display: flex;
+}
+.tabladeopciones {
+    background-color: rgba(79, 247, 168, 0.5); 
+    backdrop-filter: blur(10px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    width: 20%;
+    border-radius: 10px
+}
+.opciones{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+li{
+    list-style-type: none;
+}
+.informacion {
+    display: flex;
+    flex-grow: 1; 
+    width: 50%;
+    height: 100vh;
+    text-align: center;
+    justify-content: center;
+}
+.profesores{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cursos{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.temas{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

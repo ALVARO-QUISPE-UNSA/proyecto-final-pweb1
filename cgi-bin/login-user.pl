@@ -3,8 +3,8 @@ use strict;
 use warnings;
 use CGI;
 use DBI;
-binmode(STDOUT, ":utf8");
-binmode(STDIN, ":utf8");
+#binmode(STDOUT, ":utf8");
+#binmode(STDIN, ":utf8");
 
 my $q = CGI->new;
 my $dni = $q->param("dni");

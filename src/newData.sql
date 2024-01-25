@@ -1,0 +1,63 @@
+USE pweb1;
+INSERT INTO matricula (fecha_emision, fecha_vencimiento, costo, id_alumno)
+VALUES
+('2024-01-01', '2024-12-31', 100.00, (SELECT dni FROM alumno WHERE dni = 12345678)),
+('2024-01-15', '2024-12-31', 120.00, (SELECT dni FROM alumno WHERE dni = 23456789)),
+('2024-02-01', '2024-12-31', 90.00, (SELECT dni FROM alumno WHERE dni = 34567890)),
+('2024-02-15', '2024-12-31', 110.00, (SELECT dni FROM alumno WHERE dni = 45678901)),
+('2024-03-01', '2024-12-31', 80.00, (SELECT dni FROM alumno WHERE dni = 56789012));
+-- LLenar tabla de aulas:
+INSERT INTO aulas (piso, codigo) VALUES
+(1, 'A101'),
+(2, 'B201'),
+(1, 'A102'),
+(3, 'C301');
+-- Insertar datos de cursos
+INSERT INTO curso (nombre) VALUES
+('Cálculo 1'),
+('Matemática Básica'),
+('Física 1');
+-- Insertar datos de temas
+INSERT INTO temas (nombre) VALUES
+('Funciones, Límites y Continuidad'),
+('Derivada y sus Aplicaciones'),
+('La Integral, Técnicas de Integración'),
+('Números Reales'),
+('Funciones Reales'),
+('Plano Cartesiano'),
+('Vectores en el Plano'),
+('Magnitudes Físicas y Vectores'),
+('Movimiento en una Dimensión'),
+('Movimiento en Dos y Tres Dimensiones'),
+('Dinámica de la Partícula'),
+('Cantidad de Movimiento Lineal y Colisiones');
+-- Insertar datos de materiales
+INSERT INTO materiales (tipo, nombre) VALUES
+('Libro', 'Guía de la UNSA de Cálculo'),
+('Libro', 'Trascendentes Tempranas, Stewart'),
+('Libro', 'Física Universitaria Libro de Young y Freedman'),
+('Libro', 'Matemática Básica Eduardo Espinoza Ramos');
+-- Insertar datos de profesores
+INSERT INTO profesores (dni, nombre, apellido1, apellido2, telefono, email, experiencia, direccion)
+VALUES
+(11111111, 'Profesor1', 'Apellido1', 'Apellido2', '123456789', 'profesor1@example.com', 'Experiencia en Cálculo y Trascendentes Tempranas', 'Dirección1'),
+(22222222, 'Profesor2', 'Apellido1', 'Apellido2', '234567890', 'profesor2@example.com', 'Especialista en Matemática Básica', 'Dirección2'),
+(33333333, 'Profesor3', 'Apellido1', 'Apellido2', '345678901', 'profesor3@example.com', 'Amplia experiencia en Física Universitaria', 'Dirección3'),
+(44444444, 'Profesor4', 'Apellido1', 'Apellido2', '456789012', 'profesor4@example.com', 'Experto en Movimiento y Dinámica', 'Dirección4'),
+(55555555, 'Profesor5', 'Apellido1', 'Apellido2', '567890123', 'profesor5@example.com', 'Especialización en Cantidad de Movimiento Lineal y Colisiones', 'Dirección5');
+-- Insertar datos en temas_por_curso
+INSERT INTO temas_por_curso (id_tema, id_curso)
+VALUES
+(1, 1),  -- Cálculo 1
+(2, 1),  -- Cálculo 1
+(3, 1),  -- Cálculo 1
+(5, 2),  -- Matemática Básica
+(4, 2),  -- Matemática Básica
+(7, 2),  -- Vectores en el Plano
+(10, 3), -- Movimiento en una Dimensión
+(11, 3), -- Movimiento en Dos y Tres Dimensiones
+(12, 3), -- Dinámica de la Partícula
+(6, 3),  -- Física 1
+(3, 3),  -- Física 1
+(8, 3), -- Física 1
+(9, 3); -- Física 1
