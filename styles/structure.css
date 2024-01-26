@@ -1,62 +1,193 @@
+/*
+ * Declaración de algunas variables
+ */
+:root {
+  --color-header: rgb(33 50 170 / .9);
+  --color-nav: rgb(170 30 50 / .9);
+  --blue-gradient: radial-gradient(circle, rgba(47,122,194,1) 0%, rgba(68,147,242,1) 58%, rgba(6,171,198,1) 100%); 
+}
+/*
+ * Normalización de los elementos
+ */
 * {
   margin: 0;
   box-sizing: border-box;
 }
+/*
+ * Normalizar enlaces
+ */
 a {
   text-decoration: none;
   color: inherit;
 }
+/*
+ * Envoltura del sitio, se organiza en columnas (verticalmente)
+ */
 .site-wrap {
   display: flex;
   flex-direction: column;
-
 }
+/*
+ * Todos los contenedores son de tipo flex
+ */
 .container {
   display: flex;
 }
+/*
+ * La parte superior que queda fijada
+ */
 .fixed-up {
   position: fixed;
   top: 0;
   width: 100%;
-  animation: fixedheader linear both;
-  animation-range: 40vh 70vh;
-  animation-timeline: scroll(root);
+  z-index: 2;
 }
-.mod-style {
+/*
+ * Esta es la capa superpuesta a las imágenes que brinda
+ * la opacidad al fondo
+ */
+.opacity{
+  position: absolute;
   width: 100%;
-  min-height:400px;
-  height: 80vh;
-
-  background-image: url(../img/background.jpeg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  height: 100%;
+  background-color: rgb(0 0 0 / .2); 
 }
-@keyframes fixedheader {
-  to {
-    background: rgb(33,50,170);
-  }
-}
+/*
+ * El header tiene sus elementos organizados en los extremos,
+ * además, tiene su animación propia
+ */
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: transparent;
   padding: 0 8%;
+  animation: fixedheader linear both;
 }
-nav > ul{
+/*
+ * Otorgádonle una animación a la barra de navegación
+ */
+nav{
+  animation: fixednav linear both, link-nav linear both;
+}
+/*
+ * Organizando la barra de navegación
+ */
+.nav-bar {
   display: flex;
   align-items: center;
-  justify-content:space-evenly;
+  list-style: none;
+  color: white;
+  padding: 0;
 }
+/*
+ * Cada elemento en la lista desordenada
+ */
+.nav-li {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+/*
+ * Enlace en la barra de navegación
+ */
+.nav-link {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  width: 100%;
+}
+/*
+ * Cuando se pase el mouse encima de cada link
+ */
+.nav-link:hover {
+  background-color: gold;
+  color: black;
+}
+/*
+ * La imagen inicial contenida en una picture, no debe
+ * desbordarese del mismo
+ */
+.initial-image {
+  display: flex;
+  align-items: flex-end;
+  background: var(--blue-gradient);
+  & img {
+    max-width: 100%;
+    padding: 4% 20% 0 20%;
+  }
+}
+/*
+ * El contenedor del logo ubicado en el header
+ */
 .site-logo {
-  width: 18%;
+  padding: 10px 0;
+  width: 12%;
+  min-width: 100px;
 }
+/*
+ * El contenedor de los botones de redes sociales y de acceder 
+ * ubicados en el header, tienen una separación adecuada
+ */
 .social-wrap {
   display: flex;
-  gap: 25px;
-  font-size: 20px;
+  gap: 2vw;
+  font-size: 100%;
 }
+/*
+ * Estilos de cada uno de los botones ubicados en el header
+ */
+.reference {
+  background-color: gold;     /*change color, yellow like login*/
+  border-radius: 10px;
+  padding: 6px;
+  font-size: 90%;
+  min-width: 20px;
+  /*animation: headerbuttons linear both;   experimental*/
+}
+/*
+ * El logo ubicado en el header
+ */
 .img-show {
   width: 100%;
+}
+/*
+  * Animaciones del header y el nav, las cuales cambian el
+  * color de fondo de dichos elementos
+ */
+@keyframes fixedheader{
+  to {
+    background: var(--color-header);
+    backdrop-filter: blur(5px);
+  }
+}
+@keyframes fixednav{
+  to {
+    background: var(--color-nav);
+    backdrop-filter: blur(5px);
+  }
+}
+@keyframes headerbuttons {
+  to{
+    background-color: rgb(250 40 50);    /* change like login red*/
+  }
+}
+@keyframes link-nav {
+  from{
+    opacity: 0;
+    display: none;
+  }
+  to{
+    opacity: 1;
+    display: block;
+  }
+}
+/*
+ * El rango de la animación se define teniendo en cuenta la imagen
+ * inicial, además se hace de acuerdo al scroll de toda la página
+ */
+.animate-scroll {
+  animation-range: 45vh 60vh;
+  animation-timeline: scroll(root);
 }

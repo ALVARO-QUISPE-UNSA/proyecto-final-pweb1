@@ -15,46 +15,47 @@
   <div class="site-wrap">
     <div class="fixed-up">
 
-      <header role="banner">
+      <header class="animate-scroll" role="banner">
 
         <div class="site-logo">
-          <a href="index.html" class="reference">
+          <a href="index.html">
             <img src="img/download.png" alt="Image" class="img-show">
           </a>
         </div>
         <div class="social-wrap">
-          <a href="#" class="reference"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" class="reference"><i class="fa-brands fa-tiktok"></i></a>
-          <a href="login.html" class="reference">Acceder</a>
+          <a href="#" class="reference animate-scroll"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" class="reference animate-scroll"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="login.html" class="reference animate-scroll">Acceder</a>
         </div>
 
       </header>
 
-      <nav role="navigation">
-        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-          <li class="active">
-            <a href="index.html" class="nav-link text-left"><b>Indice</b></a>
+      <nav class="animate-scroll" role="navigation">
+        <ul class="nav-bar animate-scroll">
+          <li class="nav-li">
+            <a href="index.html" class="nav-link"><b>Inicio</b></a>
           </li>
-          <li class="has-children">
-            <a href="about.html" class="nav-link text-left"><b>Sobre nosotros</b></a>
-            <ul class="dropdown">
-              <li><a href="teachers.html"><b>Nuestros Profesores</b></a></li>
-              <li><a href="about.html"><b>Nuestra Escuela</b></a></li>
-            </ul>
+          <li class="nav-li">
+            <a href="teachers.html" class="nav-link"><b>Docentes</b></a>
           </li>
-
-          <li>
-            <a href="courses.html" class="nav-link text-left"><b>Cursos</b></a>
+          <li class="nav-li">
+            <a href="courses.html" class="nav-link"><b>Cursos</b></a>
           </li>
-          <li>
-            <a href="contact.html" class="nav-link text-left"><b>Contacto</b></a>
-          </li>
+          <!--li> Experimental
+            <a href="contact.html"><b>Contacto</b></a>
+          </li-->
         </ul>
       </nav>
     </div>
+    <picture class="initial-image">
+      <source srcset="img/image6.png" media="(max-width: 700px) and (min-height: 600px)">
+      <source srcset="img/image5.png" media="(max-width: 700px)">
+      <img src="img/image4.png">
+    </picture>
     
-      <div class="mod-style container">
-      </div>
+      <!--div class="container initial-image">
+        <div class="opacity"></div>
+      </div-->
 
     
     <div class="hero-slide owl-carousel site-blocks-cover">
@@ -220,7 +221,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-3">
-            <p class="mb-4"><img src="img/download.png" alt="Image" class="img-fluid"></p>
+            <p class="mb-4"><!--img src="img/download.png" alt="Image" class="img-fluid"--></p>
             <p>Grupo piensa, tu futuro ahora, sigue cualquiera de estos enlaces para mayor información.</p>  
             <p><a href="#">Carrito</a></p>
           </div>
