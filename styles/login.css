@@ -99,7 +99,7 @@ section {
 }
 .input-data:hover, .input-data:focus {
   border: none;
-  outline: var(--jacksons-purple) 2px solid;
+  outline: var(--jacksons-purple) 1.5px solid;
 }
 .text-button {
   width: min-content;
@@ -117,7 +117,7 @@ section {
   background-color: var(--cinnabar);
 }
 .warning {
-  font-size: 15px;
+  font-size: 13px;
   font-weight: 600;
   color: gold;
   display: none;
@@ -134,3 +134,24 @@ section {
   }
   outline: var(--cinnabar) 2px solid
 }
+.oninvalid {
+  animation: moves 0.5s linear;
+}
+@keyframes moves {
+  0% {
+    transform: translateX(5px);
+  }
+  25% {
+    transform: translateX(-9px);
+  }
+  50% {
+    transform: translateX(7px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+}
+
