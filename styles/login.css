@@ -99,6 +99,7 @@ section {
 }
 .input-data:hover, .input-data:focus {
   border: none;
+  outline: var(--jacksons-purple) 2px solid;
 }
 .text-button {
   width: min-content;
@@ -110,23 +111,24 @@ section {
   border: none;
   background-color: var(--golden-fizz);
   padding: 3px 9px; 
+  transition: background 0.3s linear;
 }
 .text-button:hover {
-  background-color: #e8ee00;
+  background-color: var(--cinnabar);
 }
 .warning {
   font-size: 15px;
   font-weight: 600;
   color: gold;
-
+  display: none;
 }
-.input-data:valid {
+.input-data:user-valid {
   & + .warning {
     display: none;
   }
   outline: rgb(20 150 30) 2px solid;
 }
-.input-data:invalid {
+.input-data:user-invalid {
   & + .warning {
     display: block;
   }
