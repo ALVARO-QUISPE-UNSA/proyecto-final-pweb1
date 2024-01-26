@@ -18,6 +18,7 @@ my $dbh = connectDB();
 if($dni =~ /^\d{8}$/ && $password =~ /^.{8,}$/ && userValidate($dni, $password)) {
   # Recuperamos los datos del usuario y creamos una sesion
   my @dates = dates($dni);
+  my @idDeTurnos = getTurnosAlumno($dni);
   my $session = CGI::Session->new();
   my $sessionId = $session->id;
 
@@ -32,8 +33,16 @@ if($dni =~ /^\d{8}$/ && $password =~ /^.{8,}$/ && userValidate($dni, $password))
 } else {
   print $q->redirect('../login.html');
 }
-
-
+####Lo que necesita el alumno
+#Datos personales
+  # nombre
+  # apellidos
+  # telefono
+  # email
+# cursos que lleva
+  # horarios
+  # profesores
+# las matrículas que tiene
 #Subrutina que comprueba el usuario y la contraseña
 sub userValidate {
   my $dni = $_[0];
@@ -51,7 +60,6 @@ sub userValidate {
   }
   return 0;
 }
-
 # Funcion que extrae informacion del usuario
 sub dates {
   my $dni = $_[0];
@@ -65,11 +73,24 @@ sub dates {
   my @arr = ($dniRow->{nombre}, $dniRow->{apellido1}, $dniRow->{apellido1});
   return @arr;
 }
+#Función que extrae los id de los turnos que le toca
+sub getTurnosAlumno {
+  my $dni = $_[0];
+  my @turnos;
+  my $sth = $dbh->prepare("SELECT id_turno FROM turnos_alumno WHERE dni_alumno= ?");
+  $sth->execute($dni);
+  while (my @row = $sth -> fetchrow_array) {
+    push @turnos, $row[0];
+    #print "@turnos\n";
+  }
+  return @turnos;
+}
 
 # Funcion que hace la conexion a la base de datos
 sub connectDB {
   my $user = "alumno";
   my $pass = "pweb1";
   my $dsn = "DBI:MariaDB:database=pweb1;host=localhost";
-  return my $dbh = DBI->connect($dsn, $user, $pass) or die ("\e[1;31m No se pudo conectar!\n[0m]");
+  my $dbh = DBI->connect($dsn, $user, $pass) or die ("\e[1;31m No se pudo conectar!\n[0m]");
+  return $dbh;
 }
