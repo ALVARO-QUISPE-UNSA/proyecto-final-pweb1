@@ -29,9 +29,7 @@ INSERT INTO users (dni, password) VALUES
 (45678901, 'contraseña4'),
 (56789012, 'contraseña5');
 
--- Añadir alumnos a la tabla 'alumno' con referencia a la tabla 'users'
-INSERT INTO alumno (dni, nombre, apellido1, apellido2, telefono, email) VALUES
-(12345678, 'Nombre1', 'Apellido1', 'Apellido2', '123456789', 'correo1@example.com'),
+-- Añadir alumnos a la tabla 'alumno' con referencia a la tabla 'users' INSERT INTO alumno (dni, nombre, apellido1, apellido2, telefono, email) VALUES (12345678, 'Nombre1', 'Apellido1', 'Apellido2', '123456789', 'correo1@example.com'),
 (23456789, 'Nombre2', 'Apellido1', 'Apellido2', '234567890', 'correo2@example.com'),
 (34567890, 'Nombre3', 'Apellido1', 'Apellido2', '345678901', 'correo3@example.com'),
 (45678901, 'Nombre4', 'Apellido1', 'Apellido2', '456789012', 'correo4@example.com'),
