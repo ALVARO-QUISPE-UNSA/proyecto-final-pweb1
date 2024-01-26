@@ -12,64 +12,70 @@
   --oracle: #3e6f7c;
 }
 /*Envoltura de la página*/
-.wrapper {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  background: rgb(33,50,149);
-background: linear-gradient(138deg, rgba(33,50,149,1) 0%, rgba(68,147,242,1) 70%, rgba(32,193,219,1) 100%);
-
-}
 /*Estilos de las secciones*/
 section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 /*1ra sección: imágenes*/
 /*Estilos del slider*/
 .slider {
   display:flex;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  right: 0;
   overflow: hidden;
-  width: 85%;
-  height: 80%;
-  border-radius: 15px;
-  position: relative;
-  align-self: self-end;
-  box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+.mySlides {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 2s ease-out;
+}
+.active {
+  opacity: 1;
 }
 .mySlides img {
   width: 100%;
   height: 100%;
   object-fit: cover; 
 }
-.slider > div {
+.slider > .opacity{
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
   right: 0;
   /* Elimina la capa negra de fondo */
-  /* background-color: black; */
-  /* opacity: .65; */
+  background-color: rgb(0 0 0 / .5); 
 }
 /*2da sección: login*/
 /*Estilos de segunda sección*/
 .sec-section {
-  height: 100%;
-  gap: 30px;
+  z-index: 1100;
+  border-radius: 15px;
 }
 /*contenedor del contenido mostrado en la segunda sección*/
 .sec-section article {
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  background-color:var(--cinnabar);
+  /*background-color:var(--cinnabar);*/
   gap: 10px;
   padding: 30px;
-  box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
+  background: linear-gradient(138deg, rgb(33 50 149 / .9) 0%, rgb(40 110 200 / .9) 100%);
+  backdrop-filter: blur(5px);
+}
+.sec-section img {
+  transform: scale(0.8,0.8);
 }
 .form-guide {
   color: white;
@@ -110,4 +116,12 @@ section {
 }
 .text-button:hover {
   background-color: #e8ee00;
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
