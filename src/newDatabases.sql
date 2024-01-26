@@ -6,6 +6,7 @@ CREATE TABLE matricula (
   costo DECIMAL(10, 2) NOT NULL,
   id_alumno INT,
   FOREIGN KEY (id_alumno) REFERENCES alumno(dni)
+  FOREIGN KEY (id_curso) REFERENCES curso(id_curso) 
 );
 
 -- Crear la tabla aulas
