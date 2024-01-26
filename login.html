@@ -29,10 +29,13 @@
             <form class="login" action="cgi-bin/login-user.pl" method="POST">
 
               <label class="input-label" for="dni">DNI</label>
-              <input class="input-data" type="number" name="dni">
+              <input class="input-data" pattern="[0-9]{8}" name="dni">
+              <label class="warning input-label">Ingrese 8 dígitos</label>
               <label class="input-label" for="passw">Contraseña</label>
-              <input class="input-data" type="password" name="passw">
+              <input class="input-data" type="password" pattern=".{8}.*" name="passw">
+              <label class="warning input-label">Ingrese al menos 8 dígitos</label>
               <input class="text-button" type="submit" value="Iniciar Sesion">
+
             </form>
           </article>
         </section>

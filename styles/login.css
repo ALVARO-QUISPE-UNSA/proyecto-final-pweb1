@@ -89,18 +89,15 @@ section {
 }
 .input-label {
   font-family: 'Kanit', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 .input-data {
   border-radius: 50em;
   border: none;
-  font-size: 18px;
+  font-size: 15px;
   padding: 3px 10px;
 }
 .input-data:hover, .input-data:focus {
-  outline-style: solid;
-  outline-width: 3px;
-  outline-color: var(--denim);
   border: none;
 }
 .text-button {
@@ -117,11 +114,21 @@ section {
 .text-button:hover {
   background-color: #e8ee00;
 }
-@keyframes fade {
-  from {
-    opacity: 0;
+.warning {
+  font-size: 15px;
+  font-weight: 600;
+  color: gold;
+
+}
+.input-data:valid {
+  & + .warning {
+    display: none;
   }
-  to {
-    opacity: 1;
+  outline: rgb(20 150 30) 2px solid;
+}
+.input-data:invalid {
+  & + .warning {
+    display: block;
   }
+  outline: var(--cinnabar) 2px solid
 }
