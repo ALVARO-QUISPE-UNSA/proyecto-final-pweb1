@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&family=Grandstander:wght@300&display=swap'); /*Grandstander es una letra animada*/
 /*Normalize*/
 * {
   margin: 0;
@@ -6,11 +7,12 @@
 :root {
   --cinnabar: #e53030;
   --cerulean: #0493cf;
-  --golden-fizz: #f9e63e;
+  --golden-fizz: rgb(247 227 7);
   --jacksons-purple: #213295;
   --denim: #114ecb;
   --oracle: #3e6f7c;
-  --blue-gradient: linear-gradient(138deg, rgb(33 50 149 / .8) 0%, rgb(40 110 200 / .8) 100%);
+  --blue-gradient: radial-gradient(circle, rgba(11 146 168 / .8) 0%, rgb(41 122 219 / .8) 41%, rgb(9 80 149 /.8) 100%);
+ /* --blue-gradient: linear-gradient(138deg, rgb(33 50 149 / .8) 0%, rgb(40 110 200 / .8) 100%);*/
 }
 /*
  * La envoltura de la página, centra todos sus elementos. 
@@ -25,6 +27,7 @@
   background-color: black;
   position: relative;
   min-height: 100vh;
+  font-family: 'Kanit', sans-serif;
 }
 /*
  * El contenedor del slider se fija a la pantalla, esto
@@ -117,7 +120,6 @@
  */
 .form-guide {
   color: white;
-  font-family: 'Kanit', sans-serif;
 }
 /*
  * El form en sí mismo, utilizo flex para tener más control de
@@ -133,7 +135,6 @@
  * legible y tamaño adecuado
  */
 .input-label {
-  font-family: 'Kanit', sans-serif;
   font-size: 16px;
 }
 /*
@@ -165,7 +166,6 @@
   margin-top: 20px;
   align-self: center;
   border-radius: 50em;
-  font-family: 'Kanit', sans-serif;
   font-weight: bold;
   border: none;
   background-color: var(--golden-fizz);

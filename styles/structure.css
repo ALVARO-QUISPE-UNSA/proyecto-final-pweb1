@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Asap&family=Grandstander:wght@300&display=swap'); /*Grandstander es una letra animada*/
 /*
  * Declaración de algunas variables
  */
 :root {
-  --color-header: rgb(33 50 170 / .9);
-  --color-nav: rgb(170 30 50 / .9);
-  --blue-gradient: radial-gradient(circle, rgba(47,122,194,1) 0%, rgba(68,147,242,1) 58%, rgba(6,171,198,1) 100%); 
+  --color-header: rgb(17 78 203 / .9);
+  --color-nav: rgb(229 48 48 / .9);
+  --hover-nav: rgb(247 227 7 / .9);
+  --blue-gradient: radial-gradient(circle, rgba(11,146,168,1) 0%, rgba(41,122,219,1) 41%, rgba(9,80,149,1) 100%);
 }
 /*
  * Normalización de los elementos
@@ -26,6 +28,7 @@ a {
 .site-wrap {
   display: flex;
   flex-direction: column;
+  font-family: 'Asap', sans-serif;
 }
 /*
  * Todos los contenedores son de tipo flex
@@ -86,7 +89,11 @@ nav{
 .nav-li {
   display: flex;
   justify-content: center;
-  width: 100%;
+  flex-grow: 1;
+  transition: flex-grow 0.4s linear;
+  &:hover {
+    flex-grow: 1.02;
+  }
 }
 /*
  * Enlace en la barra de navegación
@@ -95,15 +102,15 @@ nav{
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  height: 35px;
   width: 100%;
-}
-/*
- * Cuando se pase el mouse encima de cada link
- */
-.nav-link:hover {
-  background-color: gold;
-  color: black;
+  height: 35px;
+  transition: background 0.2s linear;
+  border-radius: 5px;
+
+  &:hover {
+    color: black;
+    background-color: var(--hover-nav);
+  }
 }
 /*
  * La imagen inicial contenida en una picture, no debe
@@ -139,12 +146,29 @@ nav{
  * Estilos de cada uno de los botones ubicados en el header
  */
 .reference {
-  background-color: gold;     /*change color, yellow like login*/
+  font-weight: bold;
+  position: relative;
+  background-color: var(--hover-nav);   
+  outline: transparent 2px solid;
   border-radius: 10px;
-  padding: 6px;
+  padding: 5px;
   font-size: 90%;
   min-width: 20px;
-  /*animation: headerbuttons linear both;   experimental*/
+  transition: background 0.2s linear;
+
+  &:hover {
+    animation: pulse 1s infinite;
+    background-color: var(--color-nav);
+    color: var(--hover-nav);
+  }
+}
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 0.2);
+  }
+  to {
+    box-shadow: 0 0 0 8px rgb(0 0 0 / 0);
+  }
 }
 /*
  * El logo ubicado en el header
@@ -166,11 +190,6 @@ nav{
   to {
     background: var(--color-nav);
     backdrop-filter: blur(5px);
-  }
-}
-@keyframes headerbuttons {
-  to{
-    background-color: rgb(250 40 50);    /* change like login red*/
   }
 }
 @keyframes link-nav {
