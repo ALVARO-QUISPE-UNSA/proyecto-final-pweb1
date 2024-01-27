@@ -1,4 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Asap&family=Grandstander:wght@300&display=swap'); /*Grandstander es una letra animada*/
 /*
  * Declaración de algunas variables
  */
@@ -7,20 +6,6 @@
   --color-nav: rgb(229 48 48 / .9);
   --hover-nav: rgb(247 227 7 / .9);
   --blue-gradient: radial-gradient(circle, rgba(11,146,168,1) 0%, rgba(41,122,219,1) 41%, rgba(9,80,149,1) 100%);
-}
-/*
- * Normalización de los elementos
- */
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-/*
- * Normalizar enlaces
- */
-a {
-  text-decoration: none;
-  color: inherit;
 }
 /*
  * Envoltura del sitio, se organiza en columnas (verticalmente)
