@@ -17,15 +17,16 @@ my $dbh = connectDB();
 # Validamos las cadenas y despues los credenciales del usuario
 if($dni =~ /^\d{8}$/ && $password =~ /^.{8,}$/ && userValidate($dni, $password)) {
   # Recuperamos los datos del usuario y creamos una sesion
-  my @dates = dates($dni);
-  my @idDeTurnos = getTurnosAlumno($dni);
+  my @datosAlumno = datosAlumno($dni);
+  #my @idDeTurnos = getTurnosAlumno($dni);
   my $session = CGI::Session->new();
   my $sessionId = $session->id;
 
   # Creamos datos clave valor para que puedan ser recuperados
-  $session->param('uName', $dates[0]);
-  $session->param('uSurname1', $dates[1]);
-  $session->param('uSurname2', $dates[2]);
+  $session->param('nombreAlumno', $datosAlumno[0]);
+  $session->param('apellidoUno', $datosAlumno[1]);
+  $session->param('apellidoDos', $datosAlumno[2]);
+  $session->param('dni', $dni);
   $session->flush;
 
   print "Set-Cookie: sessionId=$sessionId; path=/\n";
@@ -61,7 +62,7 @@ sub userValidate {
   return 0;
 }
 # Funcion que extrae informacion del usuario
-sub dates {
+sub datosAlumno {
   my $dni = $_[0];
 
   # Preparamos y ejecutamos la solicitud
@@ -70,7 +71,7 @@ sub dates {
 
   # Obetenemos informacion
   my $dniRow = $sth->fetchrow_hashref;
-  my @arr = ($dniRow->{nombre}, $dniRow->{apellido1}, $dniRow->{apellido1});
+  my @arr = ($dniRow->{nombre}, $dniRow->{apellido1}, $dniRow->{apellido2});
   return @arr;
 }
 #Función que extrae los id de los turnos que le toca

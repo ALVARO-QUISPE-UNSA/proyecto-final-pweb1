@@ -22,11 +22,42 @@ if ($session->is_expired) {
 }
 
 # Recuperamos los datos
-my $name = $session->param("uName");
-my $surname1 = $session->param("uSurname1");
-my $surname2 = $session->param("uSurname2");
+my $nombreAlumno = $session->param("nombreAlumno");
+my $apellido1 = $session->param("apellidoUno");
+my $apellido2 = $session->param("apellidoDos");
+my $dni = $session->param("dni");
 
+#Nos conectamos a la base de datos
+my $dbh = connectDB();
+#Recuperamos los datos personales
+my %datosPersonales = datosAlumno($dni);
+#Función para la conexión a la base de datos
+sub connectDB {
+  my $user = "alumno";
+  my $pass = "pweb1";
+  my $dsn = "DBI:MariaDB:database=pweb1;host=localhost";
+  my $dbh = DBI->connect($dsn, $user, $pass) or die ("\e[1;31m No se pudo conectar!\n[0m]");
+  return $dbh;
+}
+
+#Función para recuperar datos personles
+sub datosAlumno {
+  my $dni = $_[0];
+
+  my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
+  $sth->execute($dni);
+
+  my %row;
+  $sth -> bind_columns( \(@row{ @{$sth->{NAME}} } ));
+  $sth->fetch;
+  $sth -> finish;
+  return %row;
+}
+
+
+my $email = $datosPersonales{"email"};
 print $q->header(-type => 'text/html', -charset => 'UTF-8');
+
 print<<AULAVIRTUAL;
 <!DOCTYPE html>
 <html lang="es">
@@ -37,28 +68,16 @@ print<<AULAVIRTUAL;
   <!-- <link rel="stylesheet" href="../css/styles.css"> -->
 </head>
 <body>
-
 <section>
   <div>
-    <p>Lo que sea</p>
-  </div>
-  <div>
-    <p>Cursos</p>
-  </div>
-  <div>
-    <p>Profitos</p>
-  </div>
-  <ul>
-    <li>Contacto 1</li>
-    <li>Contacto 2</li>
-    <li>Contacto 3</li>
-    <li>Contacto 4</li>
-  </ul>
-</section>
-
-<section>
-  <div>
-    <h3> Bienvenido $name $surname1 $surname2 </h3>
+    <h3> Bienvenido $nombreAlumno</h3>
+<ul>
+  <li>Email = $email</li>
+  <li>Telefono = $datosPersonales{"telefono"}</li>
+  <li>and so on</li>
+  <li></li>
+  <li></li>
+</ul>
   </div>
   <!--<script src="../.js"></script> -->
 </section>
