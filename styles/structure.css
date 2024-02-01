@@ -44,7 +44,7 @@
  * El header tiene sus elementos organizados en los extremos,
  * además, tiene su animación propia
  */
-header {
+.up-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -99,7 +99,7 @@ nav{
 }
 /*
  * La imagen inicial contenida en una picture, no debe
- * desbordarese del mismo
+ * desbordarse del mismo
  */
 .initial-image {
   display: flex;
@@ -194,4 +194,37 @@ nav{
 .animate-scroll {
   animation-range: 45vh 60vh;
   animation-timeline: scroll(root);
+}
+
+
+/*
+ * Estilo de las secciones siguientes
+ */
+
+/*
+ * Estilo general para todas las secciones, con centrado y espaciado
+ */
+section {
+  display: flex;
+  justify-content: center;
+  padding: 7% 0;
+}
+/*
+ * Estilo del título principal de la página, solo debe haber uno
+ */
+h1 {
+  font-size: 300%;
+  text-align: center;
+  color: var(--color-nav);
+}
+/*
+ * Estilo de la sección del título
+ */
+.title-section {
+}
+.reasons {
+  background-color: var(--color-header);
+}
+.teachers {
+  background-color: var(--color-header);
 }
