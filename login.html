@@ -1,49 +1,46 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Nanum+Gothic+Coding&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
+    <link rel="stylesheet" type="text/css" href="styles/fonts.css">
     <link rel="stylesheet" type="text/css" href="styles/login.css">
     <title>Inicia sesión - Grupo Piensa</title>
     <script src="src/script.js"></script>
   </head>
-<body>
-  <div class="wrapper">
-    <section class="first-section">
-      <div class="slider">
-        <div class="mySlides">
-          <img src="img/slide1.jpg"> 
-        </div>
-        <div class="mySlides">
-          <img src="img/slide2.jpg"> 
-        </div>
-        <div class="mySlides">
-          <img src="img/slide3.jpg"> 
-        </div>
-        <div></div>
-      </div>      
-      <div style="text-align:center">
-        <span class="dot"></span> 
-        <span class="dot"></span> 
-        <span class="dot"></span> 
+  <body>
+      <div class="wrapper">
+        <section class="slider-content">
+          <div class="mySlides">
+            <img src="img/image1.jpeg">
+          </div>
+          <div class="mySlides">
+            <img src="img/image2.jpg">
+          </div>
+          <div class="mySlides">
+            <img src="img/image3.jpg"> 
+          </div>
+          <div class="opacity"></div>
+        </section>
+        <section class="login-section">
+          <img src="img/download.png">
+          <article>
+            <h1 class="form-guide">Ingresa tus datos</h1>
+            <form class="login" action="cgi-bin/login-user.pl" method="POST">
+              <label class="input-label" for="dni">DNI</label>
+              <input class="input-data" pattern="[0-9]{8}" name="dni" oninvalid="setCustomValidity(' ');this.classList.add('oninvalid');">
+              <label class="warning input-label">Ingrese 8 dígitos</label>
+              <label class="input-label" for="passw">Contraseña</label>
+              <input class="input-data" type="password" pattern=".{8}.*" name="passw"  oninvalid="setCustomValidity(' ');this.classList.add('oninvalid');">
+              <label class="warning input-label">Ingrese al menos 8 letras y/o dígitos</label>
+              <input class="text-button" type="submit" value="Iniciar Sesión">
+            </form>
+          </article>
+        </section>
       </div>
-    </section>
-    <section class="sec-section">
-      <img src="img/download.png">
-      <article>
-        <h1 class="form-guide">Ingresa tus datos</h1>
-        <form class="login" action="cgi-bin/login-user.pl" method="POST">
-
-          <label class="input-label" for="dni">DNI</label>
-          <input class="input-data" type="number" name="dni">
-          <label class="input-label" for="passw">Contraseña</label>
-          <input class="input-data" type="password" name="passw">
-          <input class="text-button" type="submit" value="Iniciar Sesion">
-        </form>
-      </article>
-    </section>
-  </div>
-</body>
+  </body>
 </html>

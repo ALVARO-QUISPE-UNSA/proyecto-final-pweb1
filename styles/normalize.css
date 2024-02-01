@@ -1,0 +1,12 @@
+/*Normalize*/
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+/*
+ * Normalizar enlaces
+ */
+a {
+  text-decoration: none;
+  color: inherit;
+}

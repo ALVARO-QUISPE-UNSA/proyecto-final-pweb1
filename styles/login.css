@@ -1,113 +1,251 @@
-/*Normalize*/
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
 :root {
+  --but-hover: rgb(229 48 48 / .9);
+  --but-col: rgb(247 227 7 / .9);
   --cinnabar: #e53030;
   --cerulean: #0493cf;
-  --golden-fizz: #f9e63e;
+  --golden-fizz: rgb(247 227 7);
   --jacksons-purple: #213295;
   --denim: #114ecb;
-  --oracle: #3e6f7c;
+  --blue-gradient: radial-gradient(circle, rgba(11 146 168 / .8) 0%, rgb(41 122 219 / .8) 41%, rgb(9 80 149 /.8) 100%);
 }
-/*Envoltura de la página*/
+/*
+ * La envoltura de la página, centra todos sus elementos. 
+ * Su color de fondo es negro para que las transiciones 
+ * sean más naturales. Este mismo contenedor se toma como
+ * referencia para los elementos fijados en la página
+ */
 .wrapper {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  background: rgb(33,50,149);
-background: linear-gradient(138deg, rgba(33,50,149,1) 0%, rgba(68,147,242,1) 70%, rgba(32,193,219,1) 100%);
-
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  position: relative;
+  min-height: 100vh;
 }
-/*Estilos de las secciones*/
-section {
+/*
+ * El contenedor del slider se fija a la pantalla, esto
+ * hace que el fondo sea estático y no haya problemas
+ * con el diseño responsive del formulario.
+ */
+.slider-content {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+}
+/*
+ * El contenedor de las imágenes que participan en los
+ * slides, se superponen todos los contenedores para el
+ * efecto de las transiciones de desaparición
+ */
+.mySlides {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 2s ease-out;
+}
+/*
+ * Utilizada por el script de JS para las transiciones
+ */
+.active {
+  opacity: 1;
+}
+/*
+ * La imagen que está en los slides cubre todo su
+ * contenedor mySlides
+ */
+.mySlides img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover; 
+}
+/*
+ * Esta es la capa superpuesta a las imágenes que brinda
+ * la opacidad al fondo
+ */
+.opacity{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0 0 0 / .2); 
+}
+/*
+ * La sección de login tiene todos sus elementos centrados.
+ * Tiene un ancho máximo para que no ocupe toda la pantalla
+ * si no es necesario, además, con z-index, debido a que he
+ * creado contexto de apilamiento, me aseguro que siempre
+ * quede superpuesto a los elementos
+ */
+.login-section {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  max-width: 400px;
+  width: 90%;
+  z-index: 100;
+  gap: 20px;
 }
-/*1ra sección: imágenes*/
-/*Estilos del slider*/
-.slider {
-  display:flex;
-  overflow: hidden;
-  width: 85%;
-  height: 80%;
-  border-radius: 15px;
-  position: relative;
-  align-self: self-end;
-  box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
-}
-.mySlides img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; 
-}
-.slider > div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  right: 0;
-  /* Elimina la capa negra de fondo */
-  /* background-color: black; */
-  /* opacity: .65; */
-}
-/*2da sección: login*/
-/*Estilos de segunda sección*/
-.sec-section {
-  height: 100%;
-  gap: 30px;
-}
-/*contenedor del contenido mostrado en la segunda sección*/
-.sec-section article {
+/*
+ * Es el contenedor del form y del texto guía, tiene un fondo
+ * llamativo con gradiente, basado en el logo utilizado en el 
+ * facebook de la academia, además, tiene bordes redondeados y
+ * una separación adecuada de los elementos
+ */
+.login-section article {
   display: flex;
   flex-direction: column;
   border-radius: 15px;
-  background-color:var(--cinnabar);
   gap: 10px;
-  padding: 30px;
-  box-shadow: 0px 0px 3px 3px rgba(0,0,0,0.3);
+  padding: 8%;
+  background: var(--blue-gradient); 
+  backdrop-filter: blur(4px);
 }
+/*
+ * La imagen del logo ocupa un 80& del ancho del contenedor
+ */
+.login-section img {
+  width: 65%;
+}
+/*
+ * Texto guía "Ingrese sus datos"
+ */
 .form-guide {
   color: white;
-  font-family: 'Kanit', sans-serif;
 }
-/*Estilos del form y etiquetas internas*/
+/*
+ * El form en sí mismo, utilizo flex para tener más control de
+ * este elemento
+ */
 .login {
   display: flex;
   flex-direction: column;
   color: white;
+  gap: 5px;
 }
+/*
+ * Las etiquetas de cada entrada de elementos, con una fuente 
+ * legible y tamaño adecuado
+ */
 .input-label {
-  font-family: 'Kanit', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
+/*
+ * Las entradas de datos, con los bordes de los lados completamente
+ * circulares y un padding razonable para que el texto sea notable
+ */
 .input-data {
   border-radius: 50em;
   border: none;
-  font-size: 18px;
+  font-size: 14px;
   padding: 3px 10px;
 }
+/*
+ * Quito el borde negro predeterminado cuando la entrada tiene el foco
+ * o se le pasa el mouse encima
+ */
 .input-data:hover, .input-data:focus {
-  outline-style: solid;
-  outline-width: 3px;
-  outline-color: var(--denim);
   border: none;
+  outline: var(--jacksons-purple) 1.5px solid;
 }
+/*
+ * El submit del formulario, con bordes redondeados y una alineación
+ * propia hacia el centro, además sus estilos por default son eliminados.
+ * También, se le agrega una transición y animación que serán utilizados 
+ * cuando el mouse pase encima del elemento
+ */
 .text-button {
   width: min-content;
   margin-top: 20px;
   align-self: center;
-  border-radius: 50em;
-  font-family: 'Kanit', sans-serif;
   font-weight: bold;
+  position: relative;
+  background-color: var(--but-col);   
+  outline: transparent 2px solid;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 85%;
   border: none;
-  background-color: var(--golden-fizz);
-  padding: 3px 9px; 
+  transition: background 0.2s linear;
+  font-family: 'Asap', sans-serif;
+
+  &:hover {
+    animation: pulse 1s infinite;
+    background-color: var(--but-hover);
+    color: var(--but-col);
+  }
 }
+/*
+ * Cuando el mouse pasa por encima el fondo cambia. Aquí se realiza la
+ * transición declarada anteriormente
+ */
 .text-button:hover {
-  background-color: #e8ee00;
+  background-color: var(--cinnabar);
+}
+/*
+ * El label que aparece si los datos ingresados no son válidos, en color 
+ * amarillo para que sea notable. Inicialmente no se muestra en la pantalla
+ */
+.warning {
+  font-size: 13px;
+  font-weight: 600;
+  color: gold;
+  display: none;
+}
+/*
+ * Esta pseudoclase deja de mostrar el mensaje de advertencia cuando los
+ * campos ingresados son los correctos, además, cambia el borde de la entrada
+ * a verde, simbolizando una entrada correcta de datos
+ */
+.input-data:user-valid {
+  & + .warning {
+    display: none;
+  }
+  outline: rgb(20 150 30) 2px solid;
+}
+/*
+ * Cuando los datos de la entrada no son válidos, se muestra el mensaje de
+ * advertencia, además, el color del borde cambia a rojo
+ */
+.input-data:user-invalid {
+  & + .warning {
+    display: block;
+  }
+  outline: var(--cinnabar) 2px solid
+}
+/*
+ * Utilizado por JS para añadir la animación a los elementos cuyos datos no
+ * son los correctos
+ */
+.oninvalid {
+  animation: moves 0.5s linear;
+}
+/*
+ * Animación que hace "temblar" un elemento a los costados
+ */
+@keyframes moves {
+  0% {
+    transform: translateX(5px);
+  }
+  25% {
+    transform: translateX(-9px);
+  }
+  50% {
+    transform: translateX(7px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+}
+@keyframes pulse {
+  from {
+    box-shadow: 0 0 0 0 rgb(0 0 0 / 0.2);
+  }
+  to {
+    box-shadow: 0 0 0 8px rgb(0 0 0 / 0);
+  }
 }

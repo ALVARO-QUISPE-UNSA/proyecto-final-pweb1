@@ -4,267 +4,158 @@
 <head>
   <title>Grupo Piensa</title>
   <meta charset="utf-8">
+  <base target="_blank">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="styles/fonts.css">
+  <link rel="stylesheet" type="text/css" href="styles/normalize.css">
   <link rel="stylesheet" type="text/css" href="styles/structure.css">
   <script src="https://kit.fontawesome.com/5e1720d8b8.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-  <div class="site-wrap">
+  <main class="site-wrap">
+    <div class="fixed-up">
 
-    <header role="banner">
+      <header class="animate-scroll up-header" role="banner">
 
         <div class="site-logo">
-          <a href="index.html" class="reference">
-            <img src="img/download.png" alt="Image" class="img-show">
+          <a href="index.html">
+            <img src="img/download.png" alt="Logo piensa" class="img-show">
           </a>
         </div>
-        <article class="right-content">
-          <div class="social-wrap">
-            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-            <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-          </div>
-          <div class="reference">
-            <a href="login.html">Acceder</a>
-          </div>
-        </article>
+        <div class="social-wrap">
+          <a href="https://www.facebook.com/grupopiensaaqp/" class="reference animate-scroll"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="https://www.tiktok.com/@tiopiensa" class="reference animate-scroll"><i class="fa-brands fa-tiktok"></i></a>
+          <a href="login.html" class="reference animate-scroll" target="_self">Acceder</a>
+        </div>
 
-    </header>
-    <nav class="site-navigation position-relative text-right" role="navigation">
-      <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-        <li class="active">
-          <a href="index.html" class="nav-link text-left" style="color:White"><b>Indice</b></a>
-        </li>
-        <li class="has-children">
-          <a href="about.html" class="nav-link text-left" style="color:White"><b>Sobre nosotros</b></a>
-          <ul class="dropdown">
-            <li><a href="teachers.html" style="color:White"><b>Nuestros Profesores</b></a></li>
-            <li><a href="about.html" style="color:White"><b>Nuestra Escuela</b></a></li>
-          </ul>
-        </li>
+      </header>
 
-        <li>
-          <a href="courses.html" class="nav-link text-left" style="color:white"><b>Cursos</b></a>
-        </li>
-        <li>
-          <a href="contact.html" class="nav-link text-left" style="color:white"><b>Contacto</b></a>
-        </li>
-      </ul>
-      <div class="social-wrap">
-        <a href="#"><span class="icon-facebook"></span></a>
-        <a href="#"><span class="icon-instagram"></span></a>
-        <a href="#"><span class="icon-linkedin"></span></a>
-
-        <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
-                    class="icon-menu h3"></span></a>
-      </div>
-    </nav>
-
+      <nav class="animate-scroll" role="navigation">
+        <ul class="nav-bar animate-scroll">
+          <li class="nav-li">
+            <a href="index.html" target="_self" class="nav-link"><b>Inicio</b></a>
+          </li>
+          <li class="nav-li">
+            <a href="teachers.html" target="_self" class="nav-link"><b>Docentes</b></a>
+          </li>
+          <li class="nav-li">
+            <a href="courses.html" target="_self" class="nav-link"><b>Cursos</b></a>
+          </li>
+          <!--li> Experimental
+            <a href="contact.html"><b>Contacto</b></a>
+          </li-->
+        </ul>
+      </nav>
+    </div>
+    <picture class="initial-image">
+      <source srcset="img/image6.png" media="(max-width: 700px) and (min-height: 600px)">
+      <source srcset="img/image5.png" media="(max-width: 700px)">
+      <img src="img/image4.png">
+    </picture>
     
-    <div class="hero-slide owl-carousel site-blocks-cover">
-      <div class="intro-section" style="background-image: url('img/grupo_piensa_main_bg.jpg');">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-lg-12 mx-auto text-center" data-aos="fade-up">
-              <h1>Grupo Piensa</h1>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section class="title-section">
+      <h1>Grupo Piensa</h1>
+    </section>
     
-
-    <div></div>
-
-    <div class="site-section">
-      <div class="container">
-        <div class="row mb-5 justify-content-center text-center">
-          <div class="col-lg-4 mb-5">
-            <h2 class="section-title-underline mb-5">
-              <span>Por qué elejirnos</span>
-            </h2>
-          </div>
+    <section class="reasons">
+      <header>
+        <h2>Por qué elegirnos</h2>
+      </header>
+      <article>
+        <div>
+          <h2>Atención Personal</h2>
+          <p>Tanto en la modalidad presencial como la virtual</p>
         </div>
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-
-            <div class="feature-1 border">
-              <div class="icon-wrapper bg-primary">
-                <span class="flaticon-mortarboard text-white"></span>
-              </div>
-              <div class="feature-1-content">
-                <h2>Atencion Personal</h2>
-                <p>Tanto en la modalidad presencial como la virtual</p>
-                <p><a href="#" class="btn btn-primary px-4 rounded-0">Entérate más</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-            <div class="feature-1 border">
-              <div class="icon-wrapper bg-primary">
-                <span class="flaticon-school-material text-white"></span>
-              </div>
-              <div class="feature-1-content">
-                <h2>Sílabos aprobados</h2>
-                <p>Tenemos más de 10 años de experiencia y sabemos los temas que van a requerir saber tus hijos</p>
-                <p><a href="#" class="btn btn-primary px-4 rounded-0">Entérate más</a></p>
-              </div>
-            </div> 
-          </div>
-          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-            <div class="feature-1 border">
-              <div class="icon-wrapper bg-primary">
-                <span class="flaticon-library text-white"></span>
-              </div>
-              <div class="feature-1-content">
-                <h2>Material para estudiantes</h2>
-                <p>Contamos con facilidades de materiales a disposición del alumno</p>
-                <p><a href="#" class="btn btn-primary px-4 rounded-0">Entérate más</a></p>
-              </div>
-            </div> 
-          </div>
+        <div>
+          <h2>Sílabos aprobados</h2>
+          <p>Tenemos más de 10 años de experiencia y sabemos los temas que van a requerir saber tus hijos</p>
         </div>
-      </div>
-    </div>
-
-
-    <div class="site-section">
-      <div class="container">
-
-
-        <div class="row mb-5 justify-content-center text-center">
-          <div class="col-lg-6 mb-5">
-            <h2 class="section-title-underline mb-3">
-              <span>Cursos Populares</span>
-            </h2>
-            <p>Lista oficial de cursos</p>
-          </div>
+        <div>
+          <h2>Material para estudiantes</h2>
+          <p>Contamos con facilidades de materiales a disposición del alumno</p>
         </div>
+      </article>
+    </section>
 
-        <div class="row">
-          <div class="col-12">
-              <div class="owl-slide-3 owl-carousel">
-                  <div class="course-1-item">
-                    <figure class="thumnail">
-                      <a href="course-single.html"><img src="img/curso-preuniversitario-virtual.jpg" alt="Image" class="img-fluid"></a>
-                      <div class="price">$100.00</div>
-                      <div class="category"><h3>Modalidad 1</h3></div>  
-                    </figure>
-                    <div class="course-1-content pb-4">
-                      <h2>Temas a verse en la modalidad 1</h2>
-                      <div class="rating text-center mb-3">
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                      </div>
-                      <p class="desc mb-4">Descripcion de la modalidad 1, objetivo y meta del curso</p>
-                      <p><a href="#" class="btn btn-primary rounded-0 px-4">Inscribirse</a></p>
-                    </div>
-                  </div>
-      
-                  <div class="course-1-item">
-                    <figure class="thumnail">
-                      <a href="#"><img src="img/Curso-de-cálculo-diferencial-e-integral.jpg" alt="Image" class="img-fluid"></a>
-                      <div class="price">$100.00</div>
-                      <div class="category"><h3>Modalidad 2</h3></div>  
-                    </figure>
-                    <div class="course-1-content pb-4">
-                      <h2>Temas a verse en la modalidad 2</h2>
-                      <div class="rating text-center mb-3">
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                        <span class="icon-star2 text-warning"></span>
-                      </div>
-                      <p class="desc mb-4">Descripción de la modalidad 2, objetivo y meta del curso.</p>
-                      <p><a href="#" class="btn btn-primary rounded-0 px-4">Inscribirse</a></p>
-                    </div>
-                  </div>
-              </div>
-      
-          </div>
-        </div>
-      </div>
-    </div>
+
+    <section class="courses">
+      <header>
+        <h2>Los mejores cursos para ti</h2>
+      </header>
+
+      <!-- las tarjetas para cada curso-->
+      <article>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+        <div class="item-course"></div>
+      </article>
+    </section>
 
   
     
 
-    <div class="section-bg style-1" style="background-image: url('https://scontent.faqp3-1.fna.fbcdn.net/v/t1.6435-9/69770039_358721918352135_3655544565110145024_n.jpg?_nc_cat=103&amp;ccb=1-7&amp;_nc_sid=4dc865&amp;_nc_eui2=AeFP3gY5T8O1fk7rflbz_olA3YOqZGxZ8B3dg6pkbFnwHbXpCZwBQctxSDTBUat23JcQ_B9Hhp3U7eYcdA93yJXT&amp;_nc_ohc=2hwbnpH3IKcAX8m02oP&amp;_nc_ht=scontent.faqp3-1.fna&amp;oh=00_AfA30sdBLtzT2ZGmTYBUT3ghTcNPZE-qt8fQEk4N1Vmsdw&amp;oe=65CE609B');">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-            <span class="icon flaticon-mortarboard"></span>
-            <h3>Nuestra filosofia</h3>
-            <p>Aqui colocamos la metodologia de enseñanza que se practica en todos los cursos.</p>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-            <span class="icon flaticon-school-material"></span>
-            <h3>Principios Académicos</h3>
-            <p>Aqui colocamos nuestra base intelectual y etica sobre nuestra cercania con el mundo academico
-              e intelectual, así como los compromisos de nuestros profesores.</p>
-          </div>
-          <div class="col-lg-4 col-md-6 mb-5 mb-lg-0">
-            <span class="icon flaticon-library"></span>
-            <h3>Nuestro éxito</h3>
-            <p>Qué es lo que nos ha llevado tan lejos como empresa?, Qué hacemos bien y como es que 
-              sostenemos este progreso?.</p>
-          </div>
-        </div>
-      </div>
-    </div>
+    <section class="teachers"> 
+      <header>
+        <h2>Docentes profesionales y capacitados</h2>
+      </header>
+      <article>
+        <div class="item-teacher"></div>
+        <div class="item-teacher"></div>
+        <div class="item-teacher"></div>
+        <div class="item-teacher"></div>
+        <div class="item-teacher"></div>
+      </article>
+    </section>
     
     
 
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <p class="mb-4"><img src="img/download.png" alt="Image" class="img-fluid"></p>
-            <p>Grupo piensa, tu futuro ahora, sigue cualquiera de estos enlaces para mayor información.</p>  
-            <p><a href="#">Carrito</a></p>
-          </div>
-          <div class="col-lg-3">
-            <h3 class="footer-heading"><span>Nuestra ubicacion</span></h3>
-            <ul class="list-unstyled">
-                <li><a href="#">Academia</a></li>
-                <li><a href="#">Noticias</a></li>
-                <li><a href="#">Nuestros embajadores</a></li>
-                
-            </ul>
-          </div>
-          <div class="col-lg-3">
-              <h3 class="footer-heading"><span>Nuestros Cursos</span></h3>
-              <ul class="list-unstyled">
-                  <li><a href="#">Modalidad 1</a></li>
-                  <li><a href="#">Modalidad 2</a></li>
-              </ul>
-          </div>
-          <div class="col-lg-3">
-              <h3 class="footer-heading"><span>Contacto</span></h3>
-              <ul class="list-unstyled">
-                  <li><a href="#">Centro de Ayuda</a></li>
-                  <li><a href="#">Soporte a la comunidad</a></li>
-                  <li><a href="#">Nuestros Sponsors</a></li>
-              </ul>
-          </div>
-        </div>
+    <footer>
+      <article>
+        <h3>Sigue cualquiera de estos enlaces para mayor información.</h3>  
+      </article>
+      <article>
+        <h4 class="footer-heading">Ubicación</h4>
+        <ul class="footer-list">
+          <li><a href="#">Academia</a></li>
+          <li><a href="#">Noticias</a></li>
+          <li><a href="#">Nuestros embajadores</a></li>
+        </ul>
+      </article>
+      <article> 
+        <h4 class="footer-heading">Enlaces</h4>
+        <ul class="footer-list">
+          <li><a href="#">Cursos</a></li>
+          <li><a href="#">Profesores</a></li>
+        </ul>
+      </article>
+      <article>
+        <h4 class="footer-heading">Contacto</h4>
+        <ul class="footer-list">
+          <li><a href="#">Centro de Ayuda</a></li>
+          <li><a href="#">Soporte a la comunidad</a></li>
+          <li><a href="#">Nuestros Sponsors</a></li>
+        </ul>
+      </article>
 
-      </div>
-    </div>
+    </footer>
     
 
-  </div>
+  </main>
   <!-- .site-wrap -->
-
-
-  <!-- loader -->
-  <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#51be78"/></svg></div>
 
 </body>
 
