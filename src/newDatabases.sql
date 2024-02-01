@@ -46,3 +46,30 @@ CREATE TABLE temas_por_curso (
   FOREIGN KEY (id_tema) REFERENCES temas(id_tema),
   FOREIGN KEY (id_curso) REFERENCES curso(id_curso)
 );
+-- Crear la tabla turnos
+CREATE TABLE turnos (
+  id_turno INT AUTO_INCREMENT PRIMARY KEY,
+  id_curso INT,
+  id_aula INT,
+  dni_profesor INT,
+  hora_inicio TIME,
+  hora_fin TIME,
+  duracion INT, -- Duración en minutos
+  FOREIGN KEY (id_curso) REFERENCES curso(id_curso),
+  FOREIGN KEY (id_aula) REFERENCES aulas(id_aula),
+  FOREIGN KEY (dni_profesor) REFERENCES profesores(dni)
+);
+-- Crear la tabla turnos_alumno
+CREATE TABLE turnos_alumno (
+  dni_alumno INT,
+  id_turno INT,
+  FOREIGN KEY (dni_alumno) REFERENCES alumno(dni),
+  FOREIGN KEY (id_turno) REFERENCES turnos(id_turno)
+);
+-- Crear tabla de materiales_por_temas
+CREATE TABLE materiales_por_temas (
+  id_tema INT,
+  id_material INT,
+  FOREIGN KEY (id_tema) REFERENCES temas(id_tema),
+  FOREIGN KEY (id_material) REFERENCES materiales(id_material)
+);

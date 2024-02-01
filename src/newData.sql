@@ -61,3 +61,26 @@ VALUES
 (3, 3),  -- Física 1
 (8, 3), -- Física 1
 (9, 3); -- Física 1
+
+
+-- Insertar datos en la tabla turnos
+INSERT INTO turnos (id_curso, id_aula, dni_profesor, hora_inicio, hora_fin, duracion)
+VALUES
+(1, 1, 11111111, '08:00:00', '10:00:00', 120),  -- Cálculo 1, Aula 1, Profesor1, 8:00 AM - 10:00 AM, 2 horas
+(2, 2, 22222222, '10:30:00', '12:30:00', 120),  -- Matemática Básica, Aula 2, Profesor2, 10:30 AM - 12:30 PM, 2 horas
+(3, 3, 33333333, '14:00:00', '16:00:00', 120),  -- Física 1, Aula 3, Profesor3, 2:00 PM - 4:00 PM, 2 horas
+(1, 4, 44444444, '19:00:00', '21:00:00', 120);  -- Cálculo 1, Aula 1, Profesor5, 7:00 PM - 9:00 PM, 2 horas
+-- Insertar datos en la talba turnos_alumno 
+INSERT INTO turnos_alumno (dni_alumno, id_turno)
+VALUES 
+(12345678, 1),  -- Alumno1, Cálculo 1
+(23456789, 1),  -- Alumno2, Cálculo 1
+(34567890, 2),  -- Alumno3, Matemática Básica
+(45678901, 2),  -- Alumno4, Matemática Básica
+(56789012, 3);  -- Alumno5, Física 1
+-- Insertar datos
+INSERT INTO materiales_por_temas (id_tema, id_material) VALUES 
+(1, 1),
+(2, 2),
+(3, 3),
+(4, 4);
