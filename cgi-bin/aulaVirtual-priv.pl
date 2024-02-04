@@ -10,6 +10,7 @@ my $q = CGI->new;
 my $sessionId = $q->cookie('sessionId');
 my $session = CGI::Session->load($sessionId);
 
+#Gestionar tiempo de aula virtual
 if ($session->is_expired) {
   print $q->header(-type => 'text/html', -charset => 'UTF-8');
   print "<html><body>";
@@ -27,10 +28,11 @@ my $apellido1 = $session->param("apellidoUno");
 my $apellido2 = $session->param("apellidoDos");
 my $dni = $session->param("dni");
 
-#Nos conectamos a la base de datos
-my $dbh = connectDB();
-#Recuperamos los datos personales
-my %datosPersonales = datosAlumno($dni);
+##################
+##################
+#funciones herramienta
+##################
+##################
 #Función para la conexión a la base de datos
 sub connectDB {
   my $user = "alumno";
@@ -41,6 +43,7 @@ sub connectDB {
 }
 
 #Función para recuperar datos personles
+#Parte C, información personal
 sub datosAlumno {
   my $dni = $_[0];
 
@@ -54,35 +57,16 @@ sub datosAlumno {
   return %row;
 }
 
+#Nos conectamos a la base de datos
+my $dbh = connectDB();
+
+#Recuperamos los datos personales
+my %datosPersonales = datosAlumno($dni);
 
 my $email = $datosPersonales{"email"};
 print $q->header(-type => 'text/html', -charset => 'UTF-8');
 
 print<<AULAVIRTUAL;
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aula Virtual</title>
-  <!-- <link rel="stylesheet" href="../css/styles.css"> -->
-</head>
-<body>
-<section>
-  <div>
-    <h3> Bienvenido $nombreAlumno</h3>
-<ul>
-  <li>Email = $email</li>
-  <li>Telefono = $datosPersonales{"telefono"}</li>
-  <li>and so on</li>
-  <li></li>
-  <li></li>
-</ul>
-  </div>
-  <!--<script src="../.js"></script> -->
-</section>
 
-</body>
-</html>
 AULAVIRTUAL
 
