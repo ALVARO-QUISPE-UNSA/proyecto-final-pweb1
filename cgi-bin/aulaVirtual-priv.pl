@@ -59,18 +59,37 @@ sub datosAlumno {
   $sth -> finish;
   return %row;
 }
+
 #Parte A, de cursos, 
 #Se hace una lista de los id del alumno
+sub getListaTurnos {
+  my $dni = $_[0];
+  my @ids;
+  my $sth = $dbh->prepare("SELECT id_turno FROM turnos_alumno WHERE dni_alumno = ?");
+  $sth->execute($dni);
+  while (my @row = $sth->fetchrow_array){
+    push(@ids, $row[0]);
+  }
+  return @ids;
+}
+
 sub listaIDturnos {
   my $dni = $_[0];
 
   my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
   $sth->execute($dni);
 }
-
+####################################
+####################################
+####################################
+#MAIN
+####################################
+####################################
 #Recuperamos los datos personales
 my %datosPersonales = datosAlumno($dni);
 
+#Obtenenmos la lista de cursos
+my @idCursos = getListaTurnos($dni);
 my $email = $datosPersonales{"email"};
 print $q->header(-type => 'text/html', -charset => 'UTF-8');
 
@@ -147,4 +166,10 @@ print<<AULAVIRTUAL;
 </html>
 AULAVIRTUAL
 
-
+##Funciones auxiliares
+print "<h1>Pruebas:</h1>\n<ol>\n";
+print "<ol><li>Cursos:</li>\n";
+foreach my $id (@idCursos) {
+  print "<li>$id</li>\n";
+}
+print "</ol>\n";
