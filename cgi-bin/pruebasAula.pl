@@ -63,6 +63,52 @@ sub listaIDturnos {
   my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
   $sth->execute($dni);
 }
+
+
+
+#lo de chat
+
+use strict;
+use warnings;
+use JSON;
+
+# Crear un objeto Perl
+my $persona = {
+  nombre => 'Juan',
+  edad => 30,
+  profesion => 'Ingeniero'
+};
+
+# Convertir el objeto Perl a JSON
+my $json_persona = encode_json($persona);
+
+# Ahora puedes enviar $json_persona donde sea necesario
+
+use strict;
+use warnings;
+use JSON::MaybeXS;
+
+# Crear un arreglo de objetos Perl
+my @personas = (
+  { nombre => 'Juan', edad => 30, profesion => 'Ingeniero'  },
+  { nombre => 'María', edad => 25, profesion => 'Doctora'  }
+);
+
+# Agregar un nuevo objeto al arreglo
+my $nueva_persona = { nombre => 'Pedro', edad => 35, profesion => 'Abogado'  };
+push @personas, $nueva_persona;
+
+# Convertir el arreglo de objetos Perl a JSON
+my $json_personas = encode_json(\@personas);
+
+# Ahora puedes enviar $json_personas donde sea necesario
+
+ )
+
+
+
+
+
 ####################################
 ####################################
 ####################################
@@ -76,6 +122,7 @@ my %datosPersonales = datosAlumno($dni);
 my @idCursos = getListaTurnos($dni);
 my $email = $datosPersonales{"email"};
 print $q->header(-type => 'text/html', -charset => 'UTF-8');
+
 
 
 ##Funciones auxiliares
