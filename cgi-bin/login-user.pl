@@ -15,7 +15,7 @@ utf8::decode($password);
 my $dbh = connectDB();
 
 # Validamos las cadenas y despues los credenciales del usuario
-if($dni =~ /^\d{8}$/ && $password =~ /^.{8,}$/ && userValidate($dni, $password)) {
+if(userValidate($dni, $password)) {
   my $session = CGI::Session->new();
   my $sessionId = $session->id;
 
