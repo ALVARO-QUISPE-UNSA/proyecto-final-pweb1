@@ -13,6 +13,8 @@ my $session = CGI::Session->load($sessionId);
 my $dbh = connectDB();
 
 my $query = $q->param("query");
+# Recuperar la sesion
+my $dni = $session->param("dni");
 
 #Gestionar tiempo de aula virtual
 if ($session->is_expired) {
@@ -26,12 +28,7 @@ if ($session->is_expired) {
   exit;
 }
 
-# Recuperar la sesion
-my $dni = $session->param("dni");
 
-# Convertimos los datos a json
-my $cursos = misCursos($dni);
-my $json_data = respuestaJSON($cursos);
 
 =pod
 Logica de las peticiones:
@@ -178,4 +175,37 @@ sub connectDB {
   my $dsn = "DBI:MariaDB:database=pweb1;host=localhost";
   my $dbh = DBI->connect($dsn, $user, $pass) or die ("\e[1;31m No se pudo conectar!\n[0m]");
   return $dbh;
+}
+
+
+#################################################
+#################################################
+#EJECUCIÓN
+#################################################
+#################################################
+# Convertimos los datos a json
+#my @idTurnos = misTurnos($dni);
+#original my $cursos = misCursos($dni);
+if (! $dni) {
+  $dni = 12345678;
+}
+my $cursos = misCursos($dni);
+##my $json_data = respuestaJSON($cursos);
+if ($query eq "cursos") {
+  respuestaJSON($cursos);
+} else {
+  print $q->header(-type => 'text/html', -charset => 'UTF-8');
+  print<<AULAVIRTUAL;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Bienvenido a tu aula virtual</h1>
+  <i>Chara no tiene aula virtual</i>
+</body>
+</html>
+AULAVIRTUAL
 }

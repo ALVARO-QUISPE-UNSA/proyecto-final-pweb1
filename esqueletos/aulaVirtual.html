@@ -63,5 +63,49 @@
   </ol>
 
 
+
+
+
+
+  <h1>Prueba de funciones flecha</h1>
+  <table> 
+    <thead>
+      <th>NAME</th>
+      <th>PHONE</th>
+      <th>WEBSITE</th>
+      <th>EMAIL</th>
+    </thead>
+    <tbody id="data">
+
+    </tbody>
+  </table>
+  <button type="button" onclick="showData()">Click Me!</button>
+  <script>
+    function showData() {
+      let element = document.getElementById("data");
+      let url = 'https://jsonplaceholder.typicode.com/users';
+      let promise = fetch(url);
+      promise
+        .then(response => response.json()) //funciones flecha, anonimas
+        .then(data => {
+          mostrarDatos(data);
+        })
+        .catch(error => console.log('Error:', error));
+        //parte de tabla
+        const mostrarDatos = (data) => {
+          console.log(data);
+          let body = '';
+          for (let i = 0; i < data.length; i++) {
+            body += `<tr><td>${data[i].name}</td><td>${data[i].phone}</td><td>${data[i].website}</td><td>${data[i].email}</td></tr>`;
+          }
+          element.innerHTML = body;
+        }
+    }
+  </script>
+
 </body>
 </html>
+
+
+
+
