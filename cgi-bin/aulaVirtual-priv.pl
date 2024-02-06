@@ -138,6 +138,19 @@ sub misTurnos {
 }
 
 ################### FUNCIONES PARA OBETENR INFORMACION DE PROFESORES #####################
+sub misProfesores {
+  my @profesores;
+  
+  foreach my $id (@_) { #Funciona con la lista de turnos
+    my $dic = $dbh->selectrow_hashref("SELECT * FROM profesores WHERE dni = (SELECT dni_profesor FROM turnos WHERE id_turno = $id)");
+    my $dicCurso = $dbh->selectrow_hashref("SELECT nombre FROM curso WHERE id_curso = (SELECT id_curso FROM turnos WHERE id_turno = $id)");
+    $dic->{"curso"} = $dicCurso->{"nombre"};
+    #print $dic->{"nombre"}."\n";
+    push (@profesores, $dic);
+  }
+  print $profesores[0]->{"nombre"}."\n";
+  return \@profesores;
+}
 ################### FUNCIONES PARA OBETENR INFORMACION PERSONAL #####################
 # Funcion que extrae informacion del usuario
 sub datosAlumno {
@@ -189,11 +202,17 @@ sub connectDB {
 if (! $dni) {
   $dni = 12345678;
 }
+my @turnos = misTurnos($dni);
 my $cursos = misCursos($dni);
+my $profesores = misProfesores(@turnos);
 ##my $json_data = respuestaJSON($cursos);
 if ($query eq "cursos") {
   respuestaJSON($cursos);
-} else {
+} elsif ($query eq "profesores") {
+  respuestaJSON($profesores);
+}
+
+else {
   print $q->header(-type => 'text/html', -charset => 'UTF-8');
   print<<AULAVIRTUAL;
 <!DOCTYPE html>
