@@ -5,10 +5,14 @@ use strict;
 use CGI;
 use CGI::Session;
 use DBI;
+use JSON;
 
 my $q = CGI->new;
 my $sessionId = $q->cookie('sessionId');
 my $session = CGI::Session->load($sessionId);
+my $dbh = connectDB();
+
+my $query = $q->param("query");
 
 #Gestionar tiempo de aula virtual
 if ($session->is_expired) {
@@ -22,21 +26,152 @@ if ($session->is_expired) {
   exit;
 }
 
-# Recuperamos los datos
-my $nombreAlumno = $session->param("nombreAlumno");
-my $apellido1 = $session->param("apellidoUno");
-my $apellido2 = $session->param("apellidoDos");
+# Recuperar la sesion
 my $dni = $session->param("dni");
 
+# Convertimos los datos a json
+my $cursos = misCursos($dni);
+my $json_data = respuestaJSON($cursos);
+
+=pod
+Logica de las peticiones:
+- La solicitudes fetch ingresaran con un identificador. Ese identificador la capturamos en la varible 
+  $query, esta variable es como una constante que nos ayuda a verificar que solicita el usuario.
+- Con esta varible realizamos la comparacion:
+  
+  if ($accion eq "cursos") {
+    my $cursos = misCursos($dni);
+    respuestaJSON($cursos);
+  }
+  elsif ($accion eq "profesores") {
+    my $profesores = misProfesores($dni);
+    respuestaJSON($profesores);
+  }
+  ...
+
+- Asi concluye la logica equisde, por el momento esta horrible la subrutina misCursos, puedes mejorarlo Alvaro,
+  pero para que te guies lo hice que funcione como sea.
+=cut
 
 
-##################
-##################
-#funciones herramienta
-##################
-##################
-#Función para la conexión a la base de datos
-my $dbh = connectDB();
+################### FUNCIONES PARA OBETENR INFORMACION DE CURSOS #####################
+sub misCursos {
+  my $dni = $_[0];
+  my @turnos = misTurnos($dni);
+  my @cursos;
+
+  # Datos a recuperar
+  my $curso;
+  my $aula;
+  my $profesor;
+  my $hora_inicio;
+  my $hora_fin;
+  my $fecha_inicio;
+  my $fecha_fin;
+  my $duracion;
+
+  # Para otras consultas
+  my $id_curso;
+  my $dni_profesor;
+
+  # Iteramos por todos los turnos (cursos)
+  foreach my $turno (@turnos) {
+    # Consulta a turnos
+    my $sth = $dbh->prepare("SELECT id_curso, id_aula, dni_profesor, hora_inicio, hora_fin, duracion FROM turnos WHERE id_turno = ?");
+    $sth->execute($turno);
+    while (my @row = $sth->fetchrow_array) {
+      $id_curso = $row[0];
+      $aula = $row[1];
+      $dni_profesor = $row[2];
+      $hora_inicio = $row[3];
+      $hora_fin = $row[4];
+      $duracion = $row[5];
+    }
+
+    # Consulta a curso
+    $sth = $dbh->prepare("SELECT nombre FROM curso WHERE id_curso = ?");
+    $sth->execute($id_curso);
+    my $row = $sth->fetchrow_hashref;
+    $curso = $row->{nombre};
+
+    # Consulta a profesor
+    $sth = $dbh->prepare("SELECT nombre, apellido1, apellido2 FROM profesores WHERE dni = ?");
+    $sth->execute($dni_profesor);
+    $row = $sth->fetchrow_hashref;
+    $profesor = $row->{nombre} . ' ' . $row->{apellido1} . ' ' . $row->{apellido2};
+
+    # Consulta a matricula
+    $sth = $dbh->prepare("SELECT fecha_emision, fecha_vencimiento FROM matricula WHERE id_alumno = ? AND id_curso = ?");
+    $sth->execute($dni, $id_curso);
+    $row = $sth->fetchrow_hashref;
+    $fecha_inicio = $row->{fecha_emision};
+    $fecha_fin = $row->{fecha_vencimiento};
+
+    # Agregamos los datos al arreglo de hash
+    my %curso = (
+      curso => $curso,
+      aula => $aula,
+      profesor => $profesor,
+      hora_inicio => $hora_inicio,
+      hora_fin => $hora_fin,
+      fecha_inicio => $fecha_inicio,
+      fecha_fin => $fecha_fin,
+      duracion => $duracion,
+    );
+    push @cursos, \%curso;
+  }
+
+  return \@cursos;
+}
+
+sub misTurnos {
+  my $dni = $_[0];
+  my @turnos;
+
+  # Preparamos y ejecutamos la solicitud
+  my $sth = $dbh->prepare("SELECT id_turno FROM turnos_alumno WHERE dni_alumno = ?");
+  $sth->execute($dni);
+
+  # En general, se debe enviar un arreglo de hashes, en cada posicion es un curso con sus propiedades
+  while(my @row = $sth->fetchrow_array) {
+    push(@turnos, $row[0]);
+  }
+
+  return @turnos;
+}
+
+################### FUNCIONES PARA OBETENR INFORMACION DE PROFESORES #####################
+################### FUNCIONES PARA OBETENR INFORMACION PERSONAL #####################
+# Funcion que extrae informacion del usuario
+sub datosAlumno {
+  my $dni = $_[0];
+
+  # Preparamos y ejecutamos la solicitud
+  my $sth = $dbh->prepare("SELECT dni, nombre, apellido1, apellido2 FROM alumno WHERE dni = ?");
+
+  $sth->execute($dni);
+
+  # Obetenemos informacion
+  my $dniRow = $sth->fetchrow_hashref;
+  my %date = (
+    nombre => $dniRow->{nombre},
+    apellido1 => $dniRow->{apellido1},
+    apellido2 => $dniRow->{apellido2}
+  );
+
+  return \%date;
+}
+
+sub respuestaJSON {
+  my ($info) = @_;
+
+  print $q->header(-type => 'application/json', -charset => 'utf-8');
+  # print to_json($info);
+  print encode_json($info);
+  exit;
+}
+
+# Funcion que hace la conexion a la base de datos
 sub connectDB {
   my $user = "alumno";
   my $pass = "pweb1";
@@ -44,132 +179,3 @@ sub connectDB {
   my $dbh = DBI->connect($dsn, $user, $pass) or die ("\e[1;31m No se pudo conectar!\n[0m]");
   return $dbh;
 }
-
-#Función para recuperar datos personles
-#Parte C, información personal
-sub datosAlumno {
-  my $dni = $_[0];
-
-  my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
-  $sth->execute($dni);
-
-  my %row;
-  $sth -> bind_columns( \(@row{ @{$sth->{NAME}} } ));
-  $sth->fetch;
-  $sth -> finish;
-  return %row;
-}
-
-#Parte A, de cursos, 
-#Se hace una lista de los id del alumno
-sub getListaTurnos {
-  my $dni = $_[0];
-  my @ids;
-  my $sth = $dbh->prepare("SELECT id_turno FROM turnos_alumno WHERE dni_alumno = ?");
-  $sth->execute($dni);
-  while (my @row = $sth->fetchrow_array){
-    push(@ids, $row[0]);
-  }
-  return @ids;
-}
-
-sub listaIDturnos {
-  my $dni = $_[0];
-
-  my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
-  $sth->execute($dni);
-}
-####################################
-####################################
-####################################
-#MAIN
-####################################
-####################################
-#Recuperamos los datos personales
-my %datosPersonales = datosAlumno($dni);
-
-#Obtenenmos la lista de cursos
-my @idCursos = getListaTurnos($dni);
-my $email = $datosPersonales{"email"};
-print $q->header(-type => 'text/html', -charset => 'UTF-8');
-
-print<<AULAVIRTUAL;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-  <h1>Sectores en la barra lateral</h1> 
-  <ul>
-    <li>Logo piensa </li>
-    <li>botón home (lo que se muestra al acceder)</li>
-    <li>cursos </li>
-    <li>profesores</li>
-    <li>en la parte de abajo, botón información personal</li>
-  </ul>
-  <h2>A Parte de cursos</h2>
-  <b>Contenido de Tarjetas</b>
-  <!--
-    podría hacer unna lista de diccionarios que contenga la 
-    información de tabla turno según resultados turnos_alumno
-  -->
-  <ol>
-    <li>Imagen (identificable con el título del curso)</li>
-    <li>turno</li>
-    <li>hora inicio</li>
-    <li>hora final</li>
-    <li>profesor que dicta</li>
-    <li>hora de inicio</li>
-    <li>hora de fianl</li>
-    <li>aula que le toca</li>
-  </ol>
-
-  <h2>B Parte de profesores</h2>
-  <b>Contenido de tarjetas</b>
-  <ol>
-    <li>imagen de profesor (según dni en base de datos)</li>
-    <li>nombre profesor</li>
-    <li>apellidos 1 y 2</li>
-    <li>curso que dicta</li>
-    <li>email</li>
-    <li>experiencia</li>
-  </ol>
-
-  <h2>C Información personal</h2>
-  <b>Panel de información general</b>
-  <p>Este será como un panel que incluya la siguiente 
-    información referente al alumno</p>
-  <ol>
-    <li>nombre: $datosPersonales{"nombre"}</li>
-
-    <li>apellidos: 1: $datosPersonales{"apellido1"}</li>
-    <li>apellidos: 2: $datosPersonales{"apellido2"}</li>
-    <li>telefono: $datosPersonales{"telefono"}</li>
-    <li>email: $datosPersonales{"email"}</li>
-  </ol>
-  <b>Tarjetas de matriculas actuales</b>
-  <p>Será un conglomerado de tarjetas con
-  estructura similar a las anteriores con datos relativos
-  a las matrículas</p>
-  <ol>
-    <li>nombre curso</li>
-    <li>fecha de inicio</li>
-    <li>fecha de finalización</li>
-    <li>costo:</li>
-    <li>botón: ir al curso, te redirije</li>
-  </ol>
-
-
-</body>
-</html>
-AULAVIRTUAL
-
-##Funciones auxiliares
-print "<h1>Pruebas:</h1>\n<ol>\n";
-print "<ol><li>Cursos:</li>\n";
-foreach my $id (@idCursos) {
-  print "<li>$id</li>\n";
-}
-print "</ol>\n";
