@@ -24,7 +24,7 @@ if(userValidate($dni, $password)) {
   $session->flush;
 
   print "Set-Cookie: sessionId=$sessionId; path=/\n";
-  print $q->redirect('aulaVirtual-priv.pl');
+  print $q->redirect('../aulaVirtual.html');
 } else {
   print $q->redirect('../login.html');
 }
