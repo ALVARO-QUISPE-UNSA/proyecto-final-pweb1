@@ -70,10 +70,10 @@
   <h1>Prueba de funciones flecha</h1>
   <table> 
     <thead>
-      <th>NAME</th>
-      <th>PHONE</th>
-      <th>WEBSITE</th>
-      <th>EMAIL</th>
+      <th>Curso</th>
+      <th>Profesor</th>
+      <th>hora inicio</th>
+      <th>hora final</th>
     </thead>
     <tbody id="data">
 
@@ -83,7 +83,7 @@
   <script>
     function showData() {
       let element = document.getElementById("data");
-      let url = 'https://jsonplaceholder.typicode.com/users';
+      let url = 'http://192.168.0.7/~alumno/proyecto-final-pweb1/cgi-bin/aulaVirtual-priv.pl?query=cursos';
       let promise = fetch(url);
       promise
         .then(response => response.json()) //funciones flecha, anonimas
@@ -96,7 +96,7 @@
           console.log(data);
           let body = '';
           for (let i = 0; i < data.length; i++) {
-            body += `<tr><td>${data[i].name}</td><td>${data[i].phone}</td><td>${data[i].website}</td><td>${data[i].email}</td></tr>`;
+            body += `<tr><td>${data[i].curso}</td><td>${data[i].profesor}</td><td>${data[i].hora_inicio}</td><td>${data[i].hora_final}</td></tr>`;
           }
           element.innerHTML = body;
         }
