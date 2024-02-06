@@ -147,6 +147,9 @@ nav{
     color: var(--hover-nav);
   }
 }
+/*
+ * Una animación que simula el latido, pulso de la vida para un botón
+ */
 @keyframes pulse {
   from {
     box-shadow: 0 0 0 0 rgb(0 0 0 / 0.2);
@@ -201,26 +204,33 @@ nav{
  * Estilo de las secciones siguientes
  */
 
+
 /*
  * Estilo general para todas las secciones, con centrado y espaciado
  */
 section {
   display: flex;
   justify-content: center;
-  padding: 7% 0;
+  padding: 5% 0;
+}
+/*
+ * Clase que ayuda a centrar el contenido de etiquetas textuales
+ */
+.center-content {
+  text-align: center;
 }
 /*
  * Estilo del título principal de la página, solo debe haber uno
  */
 h1 {
   font-size: 300%;
-  text-align: center;
-  color: var(--color-nav);
 }
 /*
  * Estilo de la sección del título
  */
 .title-section {
+  flex-direction: column;
+  gap: 20px;
 }
 .reasons {
   background-color: var(--color-header);
