@@ -212,10 +212,12 @@ nav{
  */
 section {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   padding: 5% 8%;
   text-align: center;
   gap: 6em;
+  margin-top: 3em;
 }
 /*
  * Clase que ayuda a centrar el contenido de etiquetas textuales
@@ -295,11 +297,6 @@ h3 {
 /*
  * Estilo de la primera sección informativa
  */
-.reasons {
-  flex-direction: column;
-  margin-top: 3em;
-}
-
 
 .reasons-cards {
   grid-template-columns: repeat(
@@ -319,5 +316,57 @@ h3 {
   background-color: var(--hover-nav);
 }
 
-.teachers {
+.courses-cards {
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(150px, 1fr)
+  );
+  gap: 20px;
+}
+
+.item-course {
+  display: flex;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--hover-nav);
+  transition: background 0.4s linear;
+}
+.link-course {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px;
+  width: 100%;
+  height: 100%;
+  position: relative;
+
+  & p{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    opacity: 0;
+    font-weight: bold;
+    transition: all .3s linear;
+  }
+}
+.item-course:hover {
+  animation: pulse 2s linear infinite;
+}
+
+.link-course:hover {
+  & p {
+    opacity: 1;
+    background-color: rgb(200 10 25 / .85);
+    color: white;
+    outline: var(--color-header) 2px solid;
+    cursor: pointer;
+  }
 }
