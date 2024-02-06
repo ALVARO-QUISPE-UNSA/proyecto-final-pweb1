@@ -148,8 +148,22 @@ sub misProfesores {
     #print $dic->{"nombre"}."\n";
     push (@profesores, $dic);
   }
-  print $profesores[0]->{"nombre"}."\n";
+  #print $profesores[0]->{"nombre"}."\n";
   return \@profesores;
+}
+################### FUNCIONES PARA OBETENR INFORMACION DE CURSOS #####################
+sub misMatriculas {
+  my $dni = $_[0];
+  my @matriculas;
+  my $sth = $dbh->prepare("SELECT * FROM matricula WHERE id_alumno = ?");
+  $sth->execute($dni);
+  while (my $dic = $sth->fetchrow_hashref) {
+    #$idCurso = $dic->{id_curso};
+    my $dicCurso = $dbh->selectrow_hashref("SELECT nombre FROM curso WHERE id_curso = $dic->{id_curso}");
+    $dic->{"nombre_curso"} = $dicCurso->{nombre};
+    push (@matriculas, $dic);
+  }
+  return \@matriculas;
 }
 ################### FUNCIONES PARA OBETENR INFORMACION PERSONAL #####################
 # Funcion que extrae informacion del usuario
@@ -205,11 +219,14 @@ if (! $dni) {
 my @turnos = misTurnos($dni);
 my $cursos = misCursos($dni);
 my $profesores = misProfesores(@turnos);
+my $matriculas = misMatriculas($dni);
 ##my $json_data = respuestaJSON($cursos);
 if ($query eq "cursos") {
   respuestaJSON($cursos);
 } elsif ($query eq "profesores") {
   respuestaJSON($profesores);
+} elsif ($query eq "matriculas") {
+  respuestaJSON($matriculas);
 }
 
 else {
