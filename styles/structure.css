@@ -3,6 +3,7 @@
  */
 :root {
   --color-header: rgb(17 78 203 / .9);
+  --subtitles: rgb(17 70 255);
   --color-nav: rgb(229 48 48 / .9);
   --hover-nav: rgb(247 227 7 / .9);
   --blue-gradient: radial-gradient(circle, rgba(11,146,168,1) 0%, rgba(41,122,219,1) 41%, rgba(9,80,149,1) 100%);
@@ -14,6 +15,7 @@
   display: flex;
   flex-direction: column;
   font-family: 'Asap', sans-serif;
+  background-color: rgb(250 250 250);
 }
 /*
  * Todos los contenedores son de tipo flex
@@ -211,19 +213,36 @@ nav{
 section {
   display: flex;
   justify-content: center;
-  padding: 5% 0;
+  padding: 5% 8%;
+  text-align: center;
+  gap: 6em;
 }
 /*
  * Clase que ayuda a centrar el contenido de etiquetas textuales
  */
-.center-content {
-  text-align: center;
+.border-content {
+  border-radius: 10px;
+  padding: 3px 7px;
+  color: white;
 }
 /*
  * Estilo del título principal de la página, solo debe haber uno
  */
 h1 {
   font-size: 300%;
+}
+h1 > span:first-child {
+  background-color: red;
+}
+h1 > span:last-child {
+  background-color: blue;
+}
+/*
+ * Frase ubicada bajo el título
+ */
+.phrase-title {
+  font-style: italic;
+  background-color: gold;
 }
 /*
  * Estilo de la sección del título
@@ -232,9 +251,73 @@ h1 {
   flex-direction: column;
   gap: 20px;
 }
-.reasons {
-  background-color: var(--color-header);
+
+/*
+ * La mayoría del contenido se mostrará en tarjetas, por lo que este puede ser muy importante
+ */
+article {
+  display: grid;
 }
+
+/*
+ * Los subtítulos de las secciones
+ */
+
+h2 {
+  font-size: 2.5em;
+  border-radius: 15px;
+  color: var(--subtitles);
+}
+h2 > span {
+  display: inline-flex;
+  position: relative;
+  padding: 20px 10px;
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: red;
+    border-radius: 50em;
+  }
+  &::before {
+    top: 0;
+  }
+  &::after {
+    bottom: 0;
+  }
+}
+h3 {
+  font-size:  1.2em;
+}
+
+/*
+ * Estilo de la primera sección informativa
+ */
+.reasons {
+  flex-direction: column;
+  margin-top: 3em;
+}
+
+
+.reasons-cards {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(270px, 1fr)
+  );
+  gap: 25px;
+
+}
+.reasons-cards > div {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  font-size: 23px;
+  border-radius: 15px;
+  background-color: var(--hover-nav);
+}
+
 .teachers {
-  background-color: var(--color-header);
 }
