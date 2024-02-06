@@ -148,7 +148,7 @@ sub misProfesores {
     #print $dic->{"nombre"}."\n";
     push (@profesores, $dic);
   }
-  print $profesores[0]->{"nombre"}."\n";
+  #print $profesores[0]->{"nombre"}."\n";
   return \@profesores;
 }
 ################### FUNCIONES PARA OBETENR INFORMACION PERSONAL #####################
