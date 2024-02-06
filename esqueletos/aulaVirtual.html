@@ -63,5 +63,49 @@
   </ol>
 
 
+
+
+
+
+  <h1>Prueba de funciones flecha</h1>
+  <table> 
+    <thead>
+      <th>Curso</th>
+      <th>Profesor</th>
+      <th>hora inicio</th>
+      <th>hora final</th>
+    </thead>
+    <tbody id="data">
+
+    </tbody>
+  </table>
+  <button type="button" onclick="showData()">Click Me!</button>
+  <script>
+    function showData() {
+      let element = document.getElementById("data");
+      let url = 'http://192.168.0.7/~alumno/proyecto-final-pweb1/cgi-bin/aulaVirtual-priv.pl?query=cursos';
+      let promise = fetch(url);
+      promise
+        .then(response => response.json()) //funciones flecha, anonimas
+        .then(data => {
+          mostrarDatos(data);
+        })
+        .catch(error => console.log('Error:', error));
+        //parte de tabla
+        const mostrarDatos = (data) => {
+          console.log(data);
+          let body = '';
+          for (let i = 0; i < data.length; i++) {
+            body += `<tr><td>${data[i].curso}</td><td>${data[i].profesor}</td><td>${data[i].hora_inicio}</td><td>${data[i].hora_final}</td></tr>`;
+          }
+          element.innerHTML = body;
+        }
+    }
+  </script>
+
 </body>
 </html>
+
+
+
+

@@ -13,6 +13,8 @@ my $session = CGI::Session->load($sessionId);
 my $dbh = connectDB();
 
 my $query = $q->param("query");
+# Recuperar la sesion
+my $dni = $session->param("dni");
 
 #Gestionar tiempo de aula virtual
 if ($session->is_expired) {
@@ -26,12 +28,7 @@ if ($session->is_expired) {
   exit;
 }
 
-# Recuperar la sesion
-my $dni = $session->param("dni");
 
-# Convertimos los datos a json
-my $cursos = misCursos($dni);
-my $json_data = respuestaJSON($cursos);
 
 =pod
 Logica de las peticiones:
@@ -141,6 +138,19 @@ sub misTurnos {
 }
 
 ################### FUNCIONES PARA OBETENR INFORMACION DE PROFESORES #####################
+sub misProfesores {
+  my @profesores;
+  
+  foreach my $id (@_) { #Funciona con la lista de turnos
+    my $dic = $dbh->selectrow_hashref("SELECT * FROM profesores WHERE dni = (SELECT dni_profesor FROM turnos WHERE id_turno = $id)");
+    my $dicCurso = $dbh->selectrow_hashref("SELECT nombre FROM curso WHERE id_curso = (SELECT id_curso FROM turnos WHERE id_turno = $id)");
+    $dic->{"curso"} = $dicCurso->{"nombre"};
+    #print $dic->{"nombre"}."\n";
+    push (@profesores, $dic);
+  }
+  print $profesores[0]->{"nombre"}."\n";
+  return \@profesores;
+}
 ################### FUNCIONES PARA OBETENR INFORMACION PERSONAL #####################
 # Funcion que extrae informacion del usuario
 sub datosAlumno {
@@ -178,4 +188,43 @@ sub connectDB {
   my $dsn = "DBI:MariaDB:database=pweb1;host=localhost";
   my $dbh = DBI->connect($dsn, $user, $pass) or die ("\e[1;31m No se pudo conectar!\n[0m]");
   return $dbh;
+}
+
+
+#################################################
+#################################################
+#EJECUCIÓN
+#################################################
+#################################################
+# Convertimos los datos a json
+#my @idTurnos = misTurnos($dni);
+#original my $cursos = misCursos($dni);
+if (! $dni) {
+  $dni = 12345678;
+}
+my @turnos = misTurnos($dni);
+my $cursos = misCursos($dni);
+my $profesores = misProfesores(@turnos);
+##my $json_data = respuestaJSON($cursos);
+if ($query eq "cursos") {
+  respuestaJSON($cursos);
+} elsif ($query eq "profesores") {
+  respuestaJSON($profesores);
+}
+
+else {
+  print $q->header(-type => 'text/html', -charset => 'UTF-8');
+  print<<AULAVIRTUAL;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  <h1>Bienvenido a tu aula virtual</h1>
+  <i>Chara no tiene aula virtual</i>
+</body>
+</html>
+AULAVIRTUAL
 }
