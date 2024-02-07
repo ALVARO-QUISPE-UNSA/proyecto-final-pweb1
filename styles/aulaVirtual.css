@@ -110,7 +110,11 @@ li{
 .curso img{
     border-radius: 1vh;
 }
-
+.imagen{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
 .informacion {
     display: flex;
     flex-grow: 1; 
@@ -132,6 +136,5 @@ li{
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #fff;
-    margin: 5px; /* Agrega un pequeño margen entre las secciones */
+    margin: 5px; /* Agrega un pequeÃ±o margen entre las secciones */
 }
-
