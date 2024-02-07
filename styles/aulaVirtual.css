@@ -25,7 +25,7 @@
     "tabladeopciones informacion"
 }
 .tabladeopciones {
-    background-color: rgba(200, 236, 236, 0.747); 
+    background-color: rgba(200, 236, 236, 0.4); 
     backdrop-filter: blur(10px);
     display: flex;
     flex-direction: column;
@@ -98,7 +98,7 @@ li{
 .curso{
     display: flex;
     flex-direction: row;
-    background-color: #F7DC6F  ; /* Fondo de color verde claro */
+    background-color: #CCCCCCAA ; /* Fondo de color verde claro */
     border-radius: 10px;
     backdrop-filter: blur(5px); /* Efecto difuminado */
 }
