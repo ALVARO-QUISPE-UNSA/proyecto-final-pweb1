@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AulaVirtual</title>
     <link rel="stylesheet" href="styles/aulaVirtual.css">
+    <script src="./js/requests.js"></script></script>
   </head>
   <body>
     <div class="wrapper">
@@ -15,16 +16,16 @@
         </div>
         <div class="opciones">
           <ul>
-            <li><a href="./teachers.html">HOME <br> ➞</a></li>
-            <li><a href="./teachers.html">PROFESORES <br> ➞</a></li>
-            <li><a href="./courses.html">CURSOS <br> ➞</a></li>
-            <li><a href="./themes.html">INFORMACION PERSONAL <br> ➞</a></li>
+            <li><a onclick="">HOME <br> ➞</a></li>
+            <li><a onclick="getTeachers()">PROFESORES <br> ➞</a></li>
+            <li><a onclick="getCursos()">CURSOS <br> ➞</a></li>
+            <li><a onclick="getRegister()">INFORMACION PERSONAL <br> ➞</a></li>
           </ul>
         </div>
       </div>
-      <div class="informacion">
+      <div class="informacion" id="courses">
         <!-- Contenido del lado derecho (información) -->
-        <div class="cursos">
+        <div class="cursos", >
           <article class="curso">
             <div class="imagen">
               <img src="img/slide1.jpg" alt="Descripción de la imagen" width="190px" height="250px">

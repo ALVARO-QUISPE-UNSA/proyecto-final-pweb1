@@ -15,11 +15,10 @@ function getRegister() {
 }
 
 function request(accion) {
-  let url = '../cgi-bin/aulaVirtual-priv.pl?accion=' + accion; 
+  let url = './cgi-bin/aulaVirtual-priv.pl?query=' + accion; 
   fetch(url)
-    .then(response => {
-      response.json()
-    }).then(data => {
+    .then(response => response.json())
+    .then(data => {
       showResult(data, accion);
     }).catch(error => {
       console.error('Error al realizar la solicitud:', error);
@@ -28,7 +27,8 @@ function request(accion) {
 
 function showResult(data, accion) {
   switch(accion) {
-    case 'course' :
+    case 'cursos' :
+      console.log("Se pudos", data);
       resultCourse(data); break;
     case 'profesores' :
       resultTeachers(data); break;
@@ -64,7 +64,7 @@ function resultCourse(data) {
     `;
   });
   // El id del div base sera courses, en este div base iran las tarjetas (cards)
-  document.getElementById('courses').innerHTML = movies;
+  document.getElementById('courses').innerHTML = courses;
 }
 
 function resultTeachers(data) {
