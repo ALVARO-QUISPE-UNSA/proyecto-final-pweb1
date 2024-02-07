@@ -63,6 +63,8 @@ function resultCourse(data) {
       </div>
     `;
   });
+  // El id del div base sera courses, en este div base iran las tarjetas (cards)
+  document.getElementById('courses').innerHTML = movies;
 }
 
 function resultTeachers(data) {
