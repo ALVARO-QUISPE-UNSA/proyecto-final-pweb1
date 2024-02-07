@@ -1,0 +1,91 @@
+.site-wrap {
+  gap: .5em;
+}
+.initial-header {
+  background: var(--blue-gradient);
+}
+.courses-information {
+  margin-top: 8%;
+}
+.card {
+  --item: 0;
+  align-self: center;
+  position: sticky;
+  width: 100%;
+  top: 0;
+  --distance-top: calc(32%);
+}
+.card1 {
+  --item: 0;
+}
+.card2 {
+  --item: 1;
+}
+.card3 {
+  --item: 2;
+}
+.card4 {
+  --item: 3;
+}
+@media (height > 500px){
+  .card {
+    --distance-top: calc(23%);
+  }
+}
+@media (height > 600px){
+  .card {
+    --distance-top: calc(19%);
+  }
+}
+@media (height > 650px){
+  .card {
+    --distance-top: calc(17%);
+  }
+}
+@media (height > 700px){
+  .card {
+    --distance-top: calc(16%);
+  }
+}
+@media (height > 800px){
+  .card {
+    --distance-top: calc(12%);
+  }
+}
+@media (height > 1000px){
+  .card {
+    --distance-top: calc(10%);
+  }
+}
+.card {
+  top: var(--distance-top);
+  padding-top: calc(var(--item) * 1em);
+  margin-bottom: calc(var(--item) * 1em);
+}
+.card > .card-content {
+  width: 100%;
+  height: 40vh;
+  border-radius: 15px;
+  outline: var(--red) 2px solid;
+  animation: stackcards linear both;
+  animation-timeline: view();
+
+  max-height: 300px;
+  background-color: var(--color-header);
+
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(200px, 1fr)
+  );
+}
+.container-cards {
+  position: relative;
+  gap: 4em;
+}
+
+@keyframes stackcards {
+  to {
+    transform: scale(calc(var(--item) * 0.05 + 0.7));
+  }
+}

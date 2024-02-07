@@ -110,6 +110,7 @@ nav{
 .initial-image {
   display: flex;
   align-items: flex-end;
+  justify-content: center;
   background: var(--blue-gradient);
   & img {
     max-width: 100%;
@@ -258,13 +259,6 @@ h1 > span:last-child {
 }
 
 /*
- * La mayoría del contenido se mostrará en tarjetas, por lo que este puede ser muy importante
- */
-article {
-  display: grid;
-}
-
-/*
  * Los subtítulos de las secciones
  */
 
@@ -295,179 +289,6 @@ h2 > span {
 }
 h3 {
   font-size:  1.3em;
-}
-
-/*
- * Estilo de la primera sección informativa
- */
-
-.reasons-cards {
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(250px, 1fr)
-  );
-  gap: 25px;
-
-}
-.reasons-cards > div {
-  padding: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  font-size: 23px;
-  border-radius: 15px;
-  background-color: var(--hover-nav);
-}
-@media (width < 998px) and (width > 648px){
-  .reasons-cards > div:last-child {
-    grid-column: span 2;
-  }
-}
-
-.courses-cards {
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(150px, 1fr)
-  );
-  gap: 20px;
-}
-
-.item-course {
-  display: flex;
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--hover-nav);
-  transition: background 0.4s linear;
-}
-.link-course {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 0.5em;
-  width: 100%;
-  height: 100%;
-  position: relative;
-
-  & i{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    display: inline-flex;
-    justify-content: end;
-    align-items: start;
-    opacity: 0;
-    padding: 5px;
-    font-weight: bold;
-    transition: all .3s linear;
-  }
-}
-.item-course:hover {
-  animation: pulse 2s linear infinite;
-}
-
-.link-course:hover {
-  & i {
-    opacity: 1;
-    border-radius: 10px;
-    background: var(--red-gradient-1);
-    color: white;
-    outline: var(--color-header) 2px solid;
-    cursor: pointer;
-  }
-}
-.item-teacher {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--hover-nav);
-  border-radius: 10px;
-  transition: background 0.4s linear;
-}
-
-.teachers-cards {
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(245px, 1fr)
-  );
-  gap: 23px;
-}
-.link-teacher {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 1em;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  gap: 2em;
-
-  & i{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    display: inline-flex;
-    justify-content: end;
-    align-items: start;
-    opacity: 0;
-    padding: 5px;
-    color: white;
-    font-weight: bold;
-    transition: all .3s linear;
-  }
-}
-
-.link-teacher  img {
-  width: 60%;
-}
-.item-teacher:hover {
-  animation: pulse 2s linear infinite;
-}
-
-.link-teacher:hover {
-  & i {
-    opacity:1;
-    border-radius: 10px;
-    background: var(--red-gradient);
-    color: white;
-    outline: var(--color-header) 2px solid;
-    cursor: pointer;
-  }
-}
-.info-teacher {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7em;
-}
-.info-teacher > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: inherit;
-  justify-content: center;
-}
-.info-teacher  hr {
-  border: var(--subtitles) 1px solid;
-  margin: 1em 0;
-}
-.info-teacher  h3 {
-  font-size: 1.7em;
-  color: var(--color-nav);
-}
-.info-teacher  h4 {
-  border-radius: 50em;
-  background: rgb(17 40 180);
-  color: var(--hover-nav);
-  align-self: self-start;
-  font-size: 0.8em;
-  padding: 0.4em;
-  text-align: center;
 }
 
 
