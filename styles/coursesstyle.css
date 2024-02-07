@@ -122,12 +122,12 @@
   }
 }
 .title-card h2 {
-  background-color: white;
+  background-color: rgb(225 225 225);
   border-radius: 50em;
   padding: .4em;
 }
 .title-card h3 {
-  color: rgb(220 220 220);
+  color: lightblue;
   font-size: 1.2em;
   padding: .4em 2em;
   text-align:left;
