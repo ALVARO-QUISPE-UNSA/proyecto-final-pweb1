@@ -35,6 +35,8 @@
   top: 0;
   width: 100%;
   z-index: 2;
+  display: flex;
+  flex-direction: column;
 }
 /*
  * Esta es la capa superpuesta a las imágenes que brinda
@@ -62,7 +64,23 @@
  * Otorgádonle una animación a la barra de navegación
  */
 nav{
-  animation: fixednav linear both, link-nav linear both;
+  align-self: center;
+}
+@media (width <= 1000px){
+  nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: var(--color-nav);
+    backdrop-filter: blur(5px);
+  }
+}
+@media (width > 1000px){
+  nav{
+    width: 50%;
+    animation: show-back-nav linear both, show-nav linear both;
+  }
+
 }
 /*
  * Organizando la barra de navegación
@@ -181,20 +199,33 @@ nav{
     backdrop-filter: blur(5px);
   }
 }
-@keyframes fixednav{
+@keyframes show-back-nav{
   to {
+    width: 100%;
     background: var(--color-nav);
     backdrop-filter: blur(5px);
   }
 }
-@keyframes link-nav {
+@keyframes show-nav {
   from{
+    /*--color-nav: rgb(229 48 48 / .9);*/
     opacity: 0;
-    display: none;
   }
   to{
     opacity: 1;
-    display: block;
+  }
+}
+@media (width > 1000px){
+  @keyframes show-nav {
+    from{
+      /*--color-nav: rgb(229 48 48 / .9);*/
+      background-color: transparent;
+      transform: translateY(-150%);
+    }
+    to{
+      transform: translateY(0);
+      background-color: var(--color-nav);
+    }
   }
 }
 /*
