@@ -1,22 +1,28 @@
 /*Normalize*/
+/* ultimo funcional: antes de grid
+ * a0ec2a5ef682f86b53e05165da4d16536e73d57
+ */
 * {
     margin: 0;
     box-sizing: border-box;
 }
 :root {
-    --cinnabar: #e53030;
+    --cinnabar: #7B241C;
     --cerulean: #0493cf;
-    --golden-fizz: #f9e63e;
+    --golden-fizz: #F1C40F ;
     --jacksons-purple: #213295;
     --denim: #114ecb;
     --oracle: #3e6f7c;
 }
 .wrapper {
-    display: flex;
-    background-image: url('../img/Fondo.png');
+    display: grid;
+    background-image: url('../img/chicaLofi.jpg');
     background-size: cover; 
     background-position: center; 
     height: 100vh; 
+    grid-template-areas:
+    "tabladeopciones informacion"
+    "tabladeopciones informacion"
 }
 .tabladeopciones {
     background-color: rgba(200, 236, 236, 0.747); 
@@ -25,11 +31,18 @@
     flex-direction: column;
     justify-content: center;
     height: 100vh;
-    width: 22%;
+    width: 100%;
+    min-width: 200px;
+    max-width: 250px;
     border-radius: 10px;
+    grid-area: tabladeopciones;
 }
 .imagenes{
-    margin-left: 20px;
+    /*margin-left: 5%;*/
+}
+.imagenes img{
+    margin-left: 10%;
+    max-width: 80%;
 }
 .opciones{
     display: flex;
@@ -37,6 +50,10 @@
     align-items: center;
     padding: 0;
     margin: 0;
+    /*background-color: white;
+    /*
+    min-width: 19vh;
+    */
 }
 .opciones li {
     display: flex;
@@ -46,14 +63,14 @@
     justify-content: center;
     background-color: white;
     border-radius: 5px;
-    width: 19vh;
+    width: 15vh;
     height: 10vh;
-    border: 3px solid rgba(243, 40, 40, 0.877);
+    border: 3px solid rgba(169, 50, 38, 0.877);
     margin: 5vh;
     transition-duration: 0.4s;
 }
 .opciones li:hover{
-    background-color: rgba(243, 40, 40, 0.87); 
+    background-color: rgba(169, 50, 38, 0.877); 
 }
 .opciones li a {
     display: flex; 
@@ -81,7 +98,7 @@ li{
 .curso{
     display: flex;
     flex-direction: row;
-    background-color: #4edd7d; /* Fondo de color verde claro */
+    background-color: #F7DC6F  ; /* Fondo de color verde claro */
     border-radius: 10px;
     backdrop-filter: blur(5px); /* Efecto difuminado */
 }
@@ -97,10 +114,11 @@ li{
 .informacion {
     display: flex;
     flex-grow: 1; 
-    width: 50%;
+    width: 100%;
     height: 100vh;
     text-align: center;
     justify-content: center;
+    grid-area: informacion;
 }
 .info-especial{
     display: flex;
