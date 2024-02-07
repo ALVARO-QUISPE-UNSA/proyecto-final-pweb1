@@ -34,7 +34,7 @@ function showResult(data, accion) {
       resultTeachers(data); break;
     case 'usuario' :
       resultUser(data); break;
-    default
+    default:
       resultRegister(data); break;
   }
 }
