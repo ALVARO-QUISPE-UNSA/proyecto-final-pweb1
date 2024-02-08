@@ -14,7 +14,7 @@
   width: 100%;
   max-width: 900px;
   top: 0;
-  --distance-top: calc(32%);
+  --distance-top: calc(14%);
 }
 .card1 {
   --item: 0;
@@ -56,10 +56,10 @@
 }
 @media (height > 600px){
   .card {
-    --distance-top: calc(19%);
+    --distance-top: calc(8%);
   }
 }
-@media (height > 650px){
+@media (height > 600px) and (width > 1000px){
   .card {
     --distance-top: calc(17%);
   }
@@ -71,7 +71,7 @@
 }
 @media (height > 800px){
   .card {
-    --distance-top: calc(12%);
+    --distance-top: calc(7%);
   }
 }
 @media (height > 1000px){
@@ -81,8 +81,8 @@
 }
 .card {
   top: var(--distance-top);
-  padding-top: calc(var(--item) * 1.5em);
-  margin-bottom: calc(var(--item) * 1.5em);
+  padding-top: calc(var(--item) * 1em);
+  margin-bottom: calc(var(--item) * 1em);
 }
 .card-content {
   width: 100%;
@@ -131,7 +131,7 @@
   &::-webkit-scrollbar {
     background-color: lightblue;
     border-radius: 50em;
-    height: 3px;
+    height: 4px;
     width: 50px;
   }
   &::-webkit-scrollbar-thumb {
