@@ -125,9 +125,6 @@ function resultInformation(info) {
               <p><strong>Teléfono:</strong> <span>${info.telefono}</span></p>
               <p><strong>Email:</strong> <span>${info.email}</span></p>
             </div>
-            <div class="info-content">
-              <h4>Mis cursos</h4>
-            </div>
             <div class="info-slider-container">
       `;
     } else {

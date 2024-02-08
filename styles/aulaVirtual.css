@@ -211,6 +211,8 @@ main {
   }
   & span {
     position: relative;
+    color: rgb(230 230 230);
+    font-weight: 400;
     &::after{
       content: '';
       position: absolute;
@@ -222,14 +224,16 @@ main {
     }
   }
   & h2 {
-    background-color: rgb(230 230 230);
-    color: var(--blue-transparent);
+    color: rgb(230 230 230);
+    font-weight: bold;
     border-radius: 50em;
     padding: .3em .7em;
+    text-align: center;
   }
   & h5 {
     text-align: center;
     color: white;
+    font-size: 1.2em;
   }
 }
 
