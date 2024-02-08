@@ -132,14 +132,13 @@ function resultInformation(info) {
       `;
     } else {
       information += `
-              <div class="info-slider-content">
-                <h5>${info.nombre_curso}</h5>
-                <p><strong>Matrícula:</strong> <span>${info.id_matricula}</span></p>
-                <p><strong>Emisión:</strong> <span>${info.fecha_emision}</span></p>
-                <p><strong>Vencimiento:</strong> <span>${info.fecha_vencimiento}</span></p>
-                <p><strong>Costo:</strong> <span>${info.costo}</span></p>
-              </div>
-
+        <div class="info-slider-content">
+          <h5>${info.nombre_curso}</h5>
+          <p><strong>Matrícula:</strong> <span>${info.id_matricula}</span></p>
+          <p><strong>Emisión:</strong> <span>${info.fecha_emision}</span></p>
+          <p><strong>Vencimiento:</strong> <span>${info.fecha_vencimiento}</span></p>
+          <p><strong>Costo:</strong> <span>${info.costo}</span></p>
+        </div>
       `;
     }
   });
@@ -150,6 +149,6 @@ function resultInformation(info) {
   `;
   console.log(information);
   document.querySelector('main').innerHTML = information;
-  document.getElementById('item').innerHTML = "Datos Personales";
+  document.getElementById('item').innerHTML = "Mis Datos";
 }
  
