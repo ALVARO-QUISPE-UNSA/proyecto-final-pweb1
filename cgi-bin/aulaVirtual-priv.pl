@@ -84,6 +84,7 @@ sub misCursos {
 
     # Agregamos los datos al arreglo de hash
     my %curso = (
+      id_curso => $id_curso,
       curso => $curso,
       aula => $aula,
       profesor => $profesor,
