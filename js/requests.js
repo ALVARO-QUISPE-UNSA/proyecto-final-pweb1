@@ -91,15 +91,6 @@ function showResult(info, accion) {
     document.querySelector('main').innerHTML = teachers;
   }
   
-  function resultRegister(data) {
-    let registers = '';
-    data.forEach(register => {
-      registers += `
-      `;
-    });
-    // El id del div base sera courses, en este div base iran las tarjetas (cards)
-    document.querySelector('main').innerHTML = registers;
-  }
 function resultInformation(info) {
   let information = '';
   info.forEach((info, i) => {
