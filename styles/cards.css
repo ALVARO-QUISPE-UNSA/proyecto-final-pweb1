@@ -168,7 +168,6 @@
   width: 100%;
   gap: .8em;
   flex: 0 0 100%;
-  width: 100%;
   scroll-snap-align: center;
 }
 .info-card .info {
