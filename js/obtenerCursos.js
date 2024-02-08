@@ -14,9 +14,13 @@ function getCursos() {
 
 function render(data) {
   let contenido = '';
+
   data.forEach((datos, index) =>{
+    let id = datos.nombre;
+    let id1 = id.toLowerCase().replace(/ /g, '-');
+    let id2 = id1.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     contenido += `
-    <article id="calculo-1" class="card card${index + 1}">
+    <article id=${id2} class="card card${index + 1}">
         <div class="card-content">
             <div class="title-card">
                 <h2>${datos.nombre}</h2>
