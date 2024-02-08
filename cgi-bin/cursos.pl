@@ -5,8 +5,9 @@ use strict;
 use CGI;
 use DBI;
 use JSON;
-binmode(STDOUT, ":utf8");
+#binmode(STDOUT, ":utf8");
 
+my $q = CGI->new;
 # Lista que contenga diccionarios de información
 # cada diccionario contiene.
   # Nombre del curso.
@@ -61,9 +62,20 @@ while (my $infoTarjeta = $sth->fetchrow_hashref) {
   #
 
 }
+
+sub respuestaJSON {
+  my ($info) = @_;
+
+  print $q->header(-type => 'application/json', -charset => 'utf-8');
+  # print to_json($info);
+  print encode_json($info);
+  exit;
+}
 $sth->finish();  # Liberar recursos del statement handle
 $dbh->disconnect();
-print $infoCursos[0]->{nombre}."\n";
-print $infoCursos[1]->{nombre}."\n";
-print $infoCursos[1]->{turnos}[0]->{hora_inicio}."\n";
+respuestaJSON(@infoCursos);
+#print $infoCursos[0]->{nombre}."\n";
+#print $infoCursos[1]->{nombre}."\n";
+#print $infoCursos[1]->{turnos}[0]->{hora_inicio}."\n";
+
 
