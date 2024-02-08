@@ -4,7 +4,7 @@ function getName() {
     .then(response => response.json())
     .then(info => {
       let data = info[0];
-      let name = `Bienvenido ${data.nombre}`;
+      let name = `Bienvenido ${data.nombre}!`;
       document.getElementById('user').innerHTML = name;
     }).catch(error => {
       console.error('Error al realizar la solicitud:', error);
