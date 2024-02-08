@@ -6,7 +6,6 @@ use CGI;
 use CGI::Session;
 use DBI;
 use JSON;
-binmode(STDOUT, ":utf8");
 
 my $q = CGI->new;
 my $sessionId = $q->cookie('sessionId');
