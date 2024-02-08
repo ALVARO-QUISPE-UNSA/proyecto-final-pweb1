@@ -5,7 +5,8 @@ CREATE TABLE matricula (
   fecha_vencimiento DATE NOT NULL,
   costo DECIMAL(10, 2) NOT NULL,
   id_alumno INT,
-  FOREIGN KEY (id_alumno) REFERENCES alumno(dni)
+  id_curso INT,
+  FOREIGN KEY (id_alumno) REFERENCES alumno(dni),
   FOREIGN KEY (id_curso) REFERENCES curso(id_curso) 
 );
 

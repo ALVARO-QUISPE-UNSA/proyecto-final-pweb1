@@ -125,31 +125,29 @@ function resultInformation(info) {
               <p><strong>Teléfono:</strong> <span>${info.telefono}</span></p>
               <p><strong>Email:</strong> <span>${info.email}</span></p>
             </div>
+            <div class="info-content">
+              <h4>Mis cursos</h4>
+            </div>
+            <div class="info-slider-container">
+      `;
+    } else {
+      information += `
+              <div class="info-slider-content">
+                <h5>${info.nombre_curso}</h5>
+                <p><strong>Matrícula:</strong> <span>${info.id_matricula}</span></p>
+                <p><strong>Emisión:</strong> <span>${info.fecha_emision}</span></p>
+                <p><strong>Vencimiento:</strong> <span>${info.fecha_vencimiento}</span></p>
+                <p><strong>Costo:</strong> <span>${info.costo}</span></p>
+              </div>
+
       `;
     }
-    /*else {
-      information += `
-        <div class="card">
-          <table>
-            <tr>
-              <th><strong>Matricula:</strong></th>
-              <th><strong>Curso:</strong></th>
-              <th><strong>Emisión:</strong></th>
-              <th><strong>Vencimiento:</strong></th>
-              <th><strong>Costo:</strong></th>
-            </tr>
-            <tr>
-              <td>${info.id_matricula}</td>
-              <td>${info.nombre_curso}</td>
-              <td>${info.fecha_emision}</td>
-              <td>${info.fecha_vencimiento}</td>
-              <td>${info.costo}</td>
-            </tr>
-          </table>
-        </div>
-      `;
-    }*/
   });
+  information += `
+            </div>
+          </div>
+        </article>
+  `;
   console.log(information);
   document.querySelector('main').innerHTML = information;
   document.getElementById('item').innerHTML = "Datos Personales";

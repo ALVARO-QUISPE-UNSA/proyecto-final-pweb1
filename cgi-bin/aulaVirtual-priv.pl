@@ -19,13 +19,6 @@ my $dni = $session->param("dni");
 
 #Gestionar tiempo de aula virtual
 if ($session->is_expired) {
-  print $q->header(-type => 'text/html', -charset => 'UTF-8');
-  print "<html><body>";
-  print "<p>Su sesión ha expirado. Por favor inicie sesión nuevamente</a>.</p>";
-  print "<form action='../login.html' method='GET'>";
-  print "<input type='submit' value='Iniciar sesión'>";
-  print "</form>";
-  print "</body></html>";
   exit;
 }
 
@@ -199,19 +192,4 @@ if ($query eq "cursos") {
 } elsif ($query eq "information") {
   my $information = misDatos($dni);
   respuestaJSON($information);
-} else {
-  print $q->header(-type => 'text/html', -charset => 'UTF-8');
-  print<<AULAVIRTUAL;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
-  <h1>Bienvenido a tu aula virtual</h1>
-  <i>Chara no tiene aula virtual</i>
-</body>
-</html>
-AULAVIRTUAL
 }

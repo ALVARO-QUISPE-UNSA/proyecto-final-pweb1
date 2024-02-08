@@ -76,10 +76,12 @@ VALUES
 INSERT INTO turnos_alumno (dni_alumno, id_turno)
 VALUES 
 (12345678, 1),  -- Alumno1, Cálculo 1
+(12345678, 2),  -- Alumno1, Cálculo 1
+(12345678, 3),  -- Alumno1, Cálculo 1
 (23456789, 1),  -- Alumno2, Cálculo 1
-(34567890, 2),  -- Alumno3, Matemática Básica
-(45678901, 2),  -- Alumno4, Matemática Básica
-(56789012, 3);  -- Alumno5, Física 1
+(34567890, 1),  -- Alumno3, Matemática Básica
+(45678901, 1),  -- Alumno4, Matemática Básica
+(56789012, 1);  -- Alumno5, Física 1
 -- Insertar datos
 INSERT INTO materiales_por_temas (id_tema, id_material) VALUES 
 (1, 1),

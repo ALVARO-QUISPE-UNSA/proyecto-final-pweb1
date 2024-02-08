@@ -141,22 +141,21 @@ main {
       auto-fill,
       minmax(250px, 1fr)
     );
-    grid-template-rows: repeat(
-      auto-fill,
-      minmax(1fr, 300px)
-    );
+    grid-template-rows: min-content;
 }
 
 .card {
-    display: grid;
-    grid-template-columns: repeat(
-      auto-fit,
-      minmax(230px, 1fr)
-    );
-    border-radius: 15px;
-    background-color: var(--blue-transparent);
-    padding: .7em;
-    gap: .7em;
+  align-self: center;
+
+  display: grid;
+  grid-template-columns: repeat(
+  auto-fit,
+  minmax(230px, 1fr)
+  );
+  border-radius: 15px;
+  background-color: var(--blue-transparent);
+  padding: .7em;
+  gap: .7em;
 }
 .img-card {
     & img {
@@ -170,34 +169,71 @@ main {
     gap: 1em;
 }
 .info-content {
-    display: flex;
-    flex-direction: column;
-    gap: .6em;
-    & strong {
-        font-size: .9em;
-        background-color: var(--red);
-        border-radius: 50em;
-        padding: .2em .4em;
-        color: white;
+  display: flex;
+  flex-direction: column;
+  gap: .6em;
+}
+.info-slider-container {
+  display: flex;
+  justify-content: start;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1em .7em 3em .7em;
+  &::-webkit-scrollbar {
+    background-color: lightblue;
+    border-radius: 50em;
+    height: 4px;
+    width: 50px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--red);
+    border-radius: 50em;
+  }
+  &::-webkit-scrollbar-track {
+    width: 50px;
+  }
+}
+.info-slider-content {
+  width: 100%;
+  flex: 0 0 100%;
+  gap: .8em;
+  scroll-snap-align: center;
+
+}
+.info-content, .info-slider-content{
+  & strong {
+    font-size: .9em;
+    background-color: var(--red);
+    border-radius: 50em;
+    padding: .2em .4em;
+    color: white;
+  }
+  & span {
+    position: relative;
+    &::after{
+      content: '';
+      position: absolute;
+      bottom: -.2em;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--yellow-solid);
     }
-    & span {
-        position: relative;
-        &::after{
-            content: '';
-            position: absolute;
-            bottom: -.2em;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--yellow-solid);
-        }
-    }
-    & h2 {
-        background-color: rgb(230 230 230);
-        color: var(--blue-transparent);
-        border-radius: 50em;
-        padding: .3em .7em;
-    }
+  }
+  & h2 {
+    background-color: rgb(230 230 230);
+    color: var(--blue-transparent);
+    border-radius: 50em;
+    padding: .3em .7em;
+  }
+  & h5 {
+    text-align: center;
+    color: white;
+  }
+}
+
+.personal-card {
+  grid-column: 1 / -1;
 }
 @keyframes pulse {
   from {
