@@ -68,12 +68,17 @@ sub respuestaJSON {
 
   print $q->header(-type => 'application/json', -charset => 'utf-8');
   # print to_json($info);
+
   print encode_json($info);
+  #foreach my $data (@_) {
+  #  print encode_json($data);
+  #}
   exit;
 }
 $sth->finish();  # Liberar recursos del statement handle
 $dbh->disconnect();
-respuestaJSON(@infoCursos);
+#print $infoCursos[1]->{nombre}."\n";
+respuestaJSON(\@infoCursos);
 #print $infoCursos[0]->{nombre}."\n";
 #print $infoCursos[1]->{nombre}."\n";
 #print $infoCursos[1]->{turnos}[0]->{hora_inicio}."\n";
