@@ -1,30 +1,38 @@
 function getCursos() {
-    request('cursos');
-  }
+  request('cursos');
+}
   
-  function getTeachers() {
-    request('profesores');
-  }
+function getTeachers() {
+  request('profesores');
+}
   
-  function getUser() {
-    request('usuario');
-  }
+function getInformation() {
+  request('information');
+}
   
-  function getRegister() {
-    request('matriculas');
-  }
+function request(accion) {
+  let url = 'cgi-bin/aulaVirtual-priv.pl?query=' + accion;
+  fetch(url)
+    .then(response => response.json())
+    .then(info => {
+      showResult(info, accion);
+    }).catch(error => {
+      console.error('Error al realizar la solicitud:', error);
+    });
+}
   
-  function request(accion) {
-    let url = './cgi-bin/aulaVirtual-priv.pl?query=' + accion;
-    fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        showResult(data, accion);
-      }).catch(error => {
-        console.error('Error al realizar la solicitud:', error);
-      });
+function showResult(info, accion) {
+  switch(accion) {
+    case 'cursos' :
+      resultCourse(info); break;
+    case 'profesores' :
+      resultTeachers(info); break;
+    default :
+      resultInformation(info); break;
   }
+}
   
+<<<<<<< HEAD
   function showResult(data, accion) {
     switch(accion) {
       case 'cursos' :

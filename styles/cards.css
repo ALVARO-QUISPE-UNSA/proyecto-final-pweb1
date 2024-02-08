@@ -28,6 +28,32 @@
 .card4 {
   --item: 3;
 }
+.card5 {
+  --item: 4;
+}
+.card6 {
+  --item: 5;
+}
+.card7 {
+  --item: 6;
+}
+.card8 {
+  --item: 7;
+}
+.card9 {
+  --item: 8;
+}
+.card10 {
+  --item: 9;
+}
+.card11 {
+  --item: 10;
+}
+@media (height > 500px){
+  .card {
+    --distance-top: calc(23%);
+  }
+}
 @media (height > 600px){
   .card {
     --distance-top: calc(8%);
