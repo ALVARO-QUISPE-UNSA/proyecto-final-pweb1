@@ -28,29 +28,6 @@ if ($session->is_expired) {
   exit;
 }
 
-
-
-=pod
-Logica de las peticiones:
-- La solicitudes fetch ingresaran con un identificador. Ese identificador la capturamos en la varible 
-  $query, esta variable es como una constante que nos ayuda a verificar que solicita el usuario.
-- Con esta varible realizamos la comparacion:
-  
-  if ($accion eq "cursos") {
-    my $cursos = misCursos($dni);
-    respuestaJSON($cursos);
-  }
-  elsif ($accion eq "profesores") {
-    my $profesores = misProfesores($dni);
-    respuestaJSON($profesores);
-  }
-  ...
-
-- Asi concluye la logica equisde, por el momento esta horrible la subrutina misCursos, puedes mejorarlo Alvaro,
-  pero para que te guies lo hice que funcione como sea.
-=cut
-
-
 ################### FUNCIONES PARA OBETENR INFORMACION DE CURSOS #####################
 sub misCursos {
   my $dni = $_[0];
@@ -151,41 +128,44 @@ sub misProfesores {
   #print $profesores[0]->{"nombre"}."\n";
   return \@profesores;
 }
-################### FUNCIONES PARA OBETENR INFORMACION DE CURSOS #####################
-sub misMatriculas {
-  my $dni = $_[0];
-  my @matriculas;
-  my $sth = $dbh->prepare("SELECT * FROM matricula WHERE id_alumno = ?");
-  $sth->execute($dni);
-  while (my $dic = $sth->fetchrow_hashref) {
-    #$idCurso = $dic->{id_curso};
-    my $dicCurso = $dbh->selectrow_hashref("SELECT nombre FROM curso WHERE id_curso = $dic->{id_curso}");
-    $dic->{"nombre_curso"} = $dicCurso->{nombre};
-    push (@matriculas, $dic);
-  }
-  return \@matriculas;
-}
-################### FUNCIONES PARA OBETENR INFORMACION PERSONAL #####################
-# Funcion que extrae informacion del usuario
-sub datosAlumno {
-  my $dni = $_[0];
 
-  # Preparamos y ejecutamos la solicitud
-  my $sth = $dbh->prepare("SELECT dni, nombre, apellido1, apellido2 FROM alumno WHERE dni = ?");
+################### FUNCIONES PARA OBTENER INFORMACION PERSONAL #####################
+sub misDatos {
+  my $dni = $_[0];
+  my @information;
 
+  # Hacemos la primera consulta a la tabla alumno
+  my $sth = $dbh->prepare("SELECT * FROM alumno WHERE dni = ?");
   $sth->execute($dni);
 
   # Obetenemos informacion
   my $dniRow = $sth->fetchrow_hashref;
   my %date = (
+    dni => $dniRow->{dni},
     nombre => $dniRow->{nombre},
     apellido1 => $dniRow->{apellido1},
-    apellido2 => $dniRow->{apellido2}
+    apellido2 => $dniRow->{apellido2},
+    telefono => $dniRow->{telefono},
+    email => $dniRow->{email}
   );
+  push(@information, \%date);
 
-  return \%date;
+  # Hacemos la segunda consulta a la tabla matricula
+  my $sth = $dbh->prepare("SELECT * FROM matricula WHERE id_alumno = ?");
+  $sth->execute($dni);
+
+  while (my $dic = $sth->fetchrow_hashref) {
+    #$idCurso = $dic->{id_curso};
+    my $dicCurso = $dbh->selectrow_hashref("SELECT nombre FROM curso WHERE id_curso = $dic->{id_curso}");
+    $dic->{"nombre_curso"} = $dicCurso->{nombre};
+    push (@information, $dic);
+  }
+
+  # Retornamos el arreglo
+  return \@information;
 }
 
+# Enviar la informacion en json
 sub respuestaJSON {
   my ($info) = @_;
 
@@ -205,31 +185,19 @@ sub connectDB {
 }
 
 
-#################################################
-#################################################
-#EJECUCIÓN
-#################################################
-#################################################
-# Convertimos los datos a json
-#my @idTurnos = misTurnos($dni);
-#original my $cursos = misCursos($dni);
-if (! $dni) {
-  $dni = 12345678;
-}
+################### FUNCIONES SEGUN LA CONSULTA #####################
 my @turnos = misTurnos($dni);
-my $cursos = misCursos($dni);
-my $profesores = misProfesores(@turnos);
-my $matriculas = misMatriculas($dni);
-##my $json_data = respuestaJSON($cursos);
+
 if ($query eq "cursos") {
+  my $cursos = misCursos($dni);
   respuestaJSON($cursos);
 } elsif ($query eq "profesores") {
+  my $profesores = misProfesores(@turnos);
   respuestaJSON($profesores);
-} elsif ($query eq "matriculas") {
-  respuestaJSON($matriculas);
-}
-
-else {
+} elsif ($query eq "information") {
+  my $information = misDatos($dni);
+  respuestaJSON($information);
+} else {
   print $q->header(-type => 'text/html', -charset => 'UTF-8');
   print<<AULAVIRTUAL;
 <!DOCTYPE html>
