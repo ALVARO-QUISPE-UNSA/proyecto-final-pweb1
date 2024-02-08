@@ -142,7 +142,20 @@ main {
       auto-fill,
       minmax(250px, 1fr)
     );
-    grid-template-rows: min-content;
+}
+main h1 {
+  font-size: 4em;
+  grid-column: 1 / -1;
+  align-self: center;
+  justify-self: center;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgb(240 240 240);
+  color: var(--blue-solid);
+  border-radius: 50em;
+  padding: .3em .7em;
 }
 
 .card {
@@ -242,6 +255,7 @@ main {
 
 .personal-card {
   grid-column: 1 / -1;
+  justify-self: center;
 }
 @keyframes pulse {
   from {

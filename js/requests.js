@@ -1,3 +1,9 @@
+function getHome() {
+  document.querySelector('main').style = "grid-template-rows: auto";
+  document.querySelector('main').innerHTML = `
+     <h1>Explora tus cursos y docentes!</h1>
+  `;
+}
 function getName() {
   let url = 'cgi-bin/aulaVirtual-priv.pl?query=information';
   fetch(url)
@@ -73,6 +79,7 @@ function resultCourse(info) {
       </article>
     `;
   });
+  document.querySelector('main').style = "grid-template-rows: min-content";
   document.querySelector('main').innerHTML = courses;
   document.getElementById('item').innerHTML = "Cursos";
 }
@@ -103,6 +110,7 @@ function resultTeachers(info) {
     `;
   });
   // El id del div base sera courses, en este div base iran las tarjetas (cards)
+  document.querySelector('main').style = "grid-template-rows: min-content";
   document.querySelector('main').innerHTML = teachers;
   document.getElementById('item').innerHTML = "Profesores";
 }
@@ -145,6 +153,7 @@ function resultInformation(info) {
         </article>
   `;
   console.log(information);
+  document.querySelector('main').style = "grid-template-rows: min-content";
   document.querySelector('main').innerHTML = information;
   document.getElementById('item').innerHTML = "Mis Datos";
 }

@@ -16,10 +16,10 @@ function render(data) {
   let contenido = '';
   data.forEach((datos, index) =>{
     contenido += `
-    <article id="calculo-1" class="card card${index + 1}">
+    <article id="calculo-1" class="teachers-card card card${index + 1}">
         <div class="card-content">
             <div class="title-card">
-                <h3>Imagen aquí</h3>
+                <img src="img/image7.png">
                 <h2>${datos.nombre} ${datos.apellido1} ${datos.apellido2}</h2>
             </div>
             <div class="info-card">
