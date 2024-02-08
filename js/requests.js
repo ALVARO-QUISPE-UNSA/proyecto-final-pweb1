@@ -32,31 +32,14 @@ function showResult(info, accion) {
   }
 }
   
-<<<<<<< HEAD
-  function showResult(data, accion) {
-    switch(accion) {
-      case 'cursos' :
-        console.log("Se pudos", data);
-        resultCourse(data); break;
-      case 'profesores' :
-        resultTeachers(data); break;
-      case 'usuario' :
-        resultUser(data); break;
-      case 'matriculas' :
-        resultRegister(data); break;
-      default:
-        resultRegister(data); break;
-    }
-  }
-  
-  function resultCourse(data) {
+  function resultCourse(info) {
     let courses = '';
-    data.forEach(course => {
+    info.forEach(course => {
       courses += `
         <article class="course-card card">
           <div class="img-card">
             <!-- Aquí deben colocar la imagen buscada con el nombre del id o del curso-->
-            <img src="img/slide1.jpg">
+            <img src="img/${course.id_curso}.jpg">
           </div>
           <div class="info-container">
             <div class="info-content">
@@ -76,18 +59,17 @@ function showResult(info, accion) {
         </article>
       `;
     });
-    // OJO falta modificar
     document.querySelector('main').innerHTML = courses;
   }
-  
-  function resultTeachers(data) {
+
+  function resultTeachers(info) {
     let teachers = '';
-    data.forEach(teacher => {
+    info.forEach(teacher => {
       teachers += `
         <article class="teacher-card card">
           <div class="img-card">
             <!-- Aquí deben colocar la imagen buscada con el nombre del id o del profesor-->
-            <img src="img/slide1.jpg" alt="Descripción de la imagen">
+            <img src="img/image7.png" alt="Descripción de la imagen">
           </div>
           <div class="info-container">
             <div class="info-content">
@@ -109,24 +91,60 @@ function showResult(info, accion) {
     document.querySelector('main').innerHTML = teachers;
   }
   
-  function resultUser(data) {
-    // Aun en implementacion
-  }
-  
   function resultRegister(data) {
     let registers = '';
     data.forEach(register => {
       registers += `
+      `;
+    });
+    // El id del div base sera courses, en este div base iran las tarjetas (cards)
+    document.querySelector('main').innerHTML = registers;
+  }
+function resultInformation(info) {
+  let information = '';
+  info.forEach((info, i) => {
+    if(i === 0) {
+      information += `
         <article class="personal-card card">
           <div class="img-card">
-            <img src="img/slide1.jpg" alt="Descripción de la imagen">
+            <img src="img/image7.png" alt="Descripción de la imagen">
           </div>
           <div class="info-container">
             <div class="info-content">
-              <p><strong>DNI:</strong> <span>${register.id_alumno}</span></p>
+              <h2>${info.nombre} ${info.apellido1} ${info.apellido2}</h2>
             </div>
             <div class="info-content">
-              <p><strong>Emisión:</strong> <span>${register.fecha_emision}</span></p>
+              <p><strong>DNI:</strong> <span>${info.dni}</span></p>
+              <p><strong>Teléfono:</strong> <span>${info.telefono}</span></p>
+              <p><strong>Email:</strong> <span>${info.email}</span></p>
+            </div>
+      `;
+    } 
+
+    /*else {
+      information += `
+        <div class="card">
+          <table>
+            <tr>
+              <th><strong>Matricula:</strong></th>
+              <th><strong>Curso:</strong></th>
+              <th><strong>Emisión:</strong></th>
+              <th><strong>Vencimiento:</strong></th>
+              <th><strong>Costo:</strong></th>
+            </tr>
+            <tr>
+              <td>${info.id_matricula}</td>
+              <td>${info.nombre_curso}</td>
+              <td>${info.fecha_emision}</td>
+              <td>${info.fecha_vencimiento}</td>
+              <td>${info.costo}</td>
+            </tr>
+          </table>
+        </div>
+
+            <div class="info-content">
+              <p><strong>Matrícula:</strong> <span>${info.id_matricula}</span></p>
+              <p><strong>Emisión:</strong> <span>${info.nombre_curso}</span></p>
             </div>
             <div class="info-content">
               <p><strong>Vencimiento:</strong> <span>${register.fecha_vencimiento}</span></p>
@@ -134,8 +152,9 @@ function showResult(info, accion) {
           </div>
         </article>
       `;
-    });
-    // El id del div base sera courses, en este div base iran las tarjetas (cards)
-    document.querySelector('main').innerHTML = registers;
-  }
+    }*/
+  });
+  console.log(information);
+  document.querySelector('main').innerHTML = information;
+}
  
