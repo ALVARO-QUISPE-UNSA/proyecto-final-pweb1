@@ -39,7 +39,7 @@ function resultCourse(info) {
     <div class="cursos">
       <article class="curso">
         <div class="imagen">
-          <img src="img/slide1.jpg" alt="Descripción de la imagen" width="190px" height="250">
+          <img src="img/${course.id_curso}.jpg" alt="Descripción de la imagen" width="190px" height="250">
         </div>
         <div class="info-especial">
           <div class="info-partida">
