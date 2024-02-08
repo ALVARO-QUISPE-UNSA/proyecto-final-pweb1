@@ -4,62 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AulaVirtual</title>
+    <link rel="stylesheet" href="styles/normalize.css">
+    <link rel="stylesheet" href="styles/fonts.css">
     <link rel="stylesheet" href="styles/aulaVirtual.css">
-    <script src="./js/requests.js"></script></script>
+    <script src="./js/requests.js"></script>
+    <script src="https://kit.fontawesome.com/5e1720d8b8.js" crossorigin="anonymous"></script>
   </head>
   <body>
-    <div class="wrapper">
-      <div class="tabladeopciones">
+    <div class="site-wrapper">
+
+      <aside>
         <!-- Contenido del lado izquierdo (opciones) -->
-        <div class="imagenes">
+          <ul>
+            <li>
+              <a onclick="">
+                <h2><i class="fa-solid fa-house"></i></h2>
+                <h5>HOME</h5>
+              </a>
+            </li>
+            <li>
+              <a onclick="getTeachers()">
+                <h2><i class="fa-solid fa-chalkboard-user"></i></h2>
+                <h5>DOCENTES</h5>
+              </a>
+            </li>
+            <li>
+              <a onclick="getCursos()">
+                <h2><i class="fa-solid fa-book"></i></h2>
+                <h5>CURSOS</h5>
+              </a>
+            </li>
+            <li>
+              <a onclick="getRegister()">
+                <h2><i class="fa-solid fa-user"></i></h2>
+                <h5>MIS DATOS</h5>
+              </a>
+            </li>
+          </ul>
+      </aside>
+
+      <header>
+        <h1>Cursos</h1>
+        <!--obtener primer nombre del alumno-->
+        <h2>Hola Jorge!</h2>
+        <div class="header-logo">
           <img src="img/download.png">
         </div>
-        <div class="opciones">
-          <ul>
-            <li><a onclick="">HOME <br> ➞</a></li>
-            <li><a onclick="getTeachers()">PROFESORES <br> ➞</a></li>
-            <li><a onclick="getCursos()">CURSOS <br> ➞</a></li>
-            <li><a onclick="getRegister()">INFORMACION PERSONAL <br> ➞</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="informacion" id="courses">
-        <!-- Contenido del lado derecho (información) -->
-        <div class="cursos", >
-          <article class="curso">
-            <div class="imagen">
-              <img src="img/slide1.jpg" alt="Descripción de la imagen" width="190px" height="250px">
-            </div>
-            <!-- Segunda parte con información especial -->
-            <div class="info-especial">
-              <!-- Información especial 1 -->
-              <div class="info-partida">
-                <h2>Información 1</h2>
-                <p>Contenido de la información 1.</p>
-              </div>
+      </header>
 
-              <!-- Información especial 2 -->
-              <div class="info-partida">
-                <h2>Información 2</h2>
-                <p>Contenido de la información 2.</p>
-              </div>
-            </div>
-            <div class="info-especial">
-              <!-- Información especial 3 -->
-              <div class="info-partida">
-                <h2>Información 3</h2>
-                <p>Contenido de la información 3.</p>
-              </div>
-
-              <!-- Información especial 4 -->
-              <div class="info-partida">
-                <h2>Información 4</h2>
-                <p>Contenido de la información 4.</p>
-              </div>
-            </div>
-          </article>
-        </div>
-      </div>
+      <main>
+      </main>
     </div>
   </body>
 </html>

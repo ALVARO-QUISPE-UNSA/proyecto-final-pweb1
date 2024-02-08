@@ -45,58 +45,60 @@ function getCursos() {
     let courses = '';
     data.forEach(course => {
       courses += `
-      <div class="cursos">
-       <article class="curso">
-        <div class="imagen">
-         <img src="./img/slide1.jpg" alt="Descripción de la imagen" width="190px" height="250">
-        </div>
-        <div class="info-especial">
-            <div class="info-partida">
-            	<p><strong>Aula:</strong> ${course.aula}</p>
-            	<p><strong>Profesor:</strong> ${course.profesor}</p>
-           	</div>
-           	<div class="info-partida">
-            	<p><strong>Hora de inicio:</strong> ${course.hora_inicio}</p>
-            	<p><strong>Hora de fin:</strong> ${course.hora_fin}</p>
-           	</div>
-           	<div class="info-partida">
-            	<p><strong>Fecha de inicio:</strong> ${course.fecha_inicio || 'No disponible'}</p>
-            	<p><strong>Fecha de fin:</strong> ${course.fecha_fin || 'No disponible'}</p>
-            	<p><strong>Duración:</strong> ${course.duracion} minutos</p>
-           	</div>
-        </div>
-      </article>
-     </div>
+        <article class="course-card card">
+          <div class="img-card">
+            <!-- Aquí deben colocar la imagen buscada con el nombre del id o del curso-->
+            <img src="img/slide1.jpg">
+          </div>
+          <div class="info-container">
+            <div class="info-content">
+              <p><strong>Aula:</strong> <span>${course.aula}</span></p>
+              <p><strong>Profesor:</strong> <span>${course.profesor}</span></p>
+            </div>
+            <div class="info-content">
+              <p><strong>Hora de inicio:</strong> <span>${course.hora_inicio}</span></p>
+              <p><strong>Hora de fin:</strong> <span>${course.hora_fin}</span></p>
+            </div>
+            <div class="info-content">
+              <p><strong>Fecha de inicio:</strong> <span>${course.fecha_inicio || 'No disponible'}</span></p>
+              <p><strong>Fecha de fin:</strong> <span>${course.fecha_fin || 'No disponible'}</span></p>
+              <p><strong>Duración:</strong> <span>${course.duracion} minutos </span></p>
+            </div>
+          </div>
+        </article>
       `;
     });
-    // El id del div base sera courses, en este div base iran las tarjetas (cards)
-    document.getElementById('courses').innerHTML = courses;
+    // OJO falta modificar
+    document.querySelector('main').innerHTML = courses;
   }
   
   function resultTeachers(data) {
     let teachers = '';
     data.forEach(teacher => {
       teachers += `
-        <div class="card">
-          <div class="img"></div>
-          <h2 class="name">${teacher.nombre}</h2>
-          <h2 class="apellido1">${teacher.apellido1}</h2>
-          <h2 class="apellido2">${teacher.apellido2}</h2>
-          <div class="information">
-            <div>
-              <p><strong>Curso:</strong> ${teacher.curso}</p>
+        <article class="teacher-card card">
+          <div class="img-card">
+            <!-- Aquí deben colocar la imagen buscada con el nombre del id o del profesor-->
+            <img src="img/slide1.jpg" alt="Descripción de la imagen">
+          </div>
+          <div class="info-container">
+            <div class="info-content">
+              <h2>${teacher.nombre} ${teacher.apellido1} ${teacher.apellido2}</h2>
             </div>
-            <div>
-              <p><strong>Experiencia:</strong> ${teacher.experiencia}</p>
-              <p><strong>Telefono:</strong> ${teacher.telefono}</p>
-              <p><strong>Email:</strong> ${teacher.email}</p>
+            <div class="info-content">
+              <p><strong>Curso:</strong> <span>${teacher.curso}</span></p>
+            </div>
+            <div class="info-content">
+              <p><strong>Experiencia:</strong> <span>${teacher.experiencia}</span></p>
+              <p><strong>Teléfono:</strong> <span>${teacher.telefono}</span></p>
+              <p><strong>Email:</strong> <span>${teacher.email}</span></p>
             </div>
           </div>
-        </div>
+        </article>
       `;
     });
     // El id del div base sera courses, en este div base iran las tarjetas (cards)
-    document.getElementById('courses').innerHTML = teachers;
+    document.querySelector('main').innerHTML = teachers;
   }
   
   function resultUser(data) {
@@ -107,23 +109,25 @@ function getCursos() {
     let registers = '';
     data.forEach(register => {
       registers += `
-        <div class="card">
-          <div class="img"></div>
-          <p><strong>Id:</strong>${register.id_alumno}</p>
-          <p><strong>Emision:</strong>${register.fecha_emision}</p>
-          <p><strong>Vencimiento:</strong>${register.fecha_vencimiento}</p>
-          <div class="information">
-            <div>
-              <p><strong>Curso:</strong> ${register.nombre_curso}</p>
+        <article class="personal-card card">
+          <div class="img-card">
+            <img src="img/slide1.jpg" alt="Descripción de la imagen">
+          </div>
+          <div class="info-container">
+            <div class="info-content">
+              <p><strong>DNI:</strong> <span>${register.id_alumno}</span></p>
             </div>
-            <div>
-              <p><strong>Costo:</strong> ${register.costo}</p>
+            <div class="info-content">
+              <p><strong>Emisión:</strong> <span>${register.fecha_emision}</span></p>
+            </div>
+            <div class="info-content">
+              <p><strong>Vencimiento:</strong> <span>${register.fecha_vencimiento}</span></p>
             </div>
           </div>
-        </div>
+        </article>
       `;
     });
     // El id del div base sera courses, en este div base iran las tarjetas (cards)
-    document.getElementById('courses').innerHTML = registers;
+    document.querySelector('main').innerHTML = registers;
   }
  
