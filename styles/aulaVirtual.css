@@ -179,6 +179,7 @@ main {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 1em .7em 3em .7em;
+  gap: 1em;
   &::-webkit-scrollbar {
     background-color: lightblue;
     border-radius: 50em;
